@@ -337,5 +337,21 @@
   "platformInviteLimit": "Too many invitations. Wait before retrying.",
   "platformInviteError": "Unable to invite. Check SaaS configuration and diagnose before retrying.",
   "platformInviteUncertain": "The send outcome is unknown. Check the account in Supabase before resending an invitation.",
-  "platformInviteDisabled": "Invitations are disabled for suspended agencies or expired access."
+  "platformInviteDisabled": "Invitations are disabled for suspended agencies or expired access.",
+  "platformOverview": "Your network",
+  "platformIntro": "One place to manage your agencies and welcome their teams.",
+  "platformTotal": "Total agencies",
+  "platformActiveAgencies": "Active agencies",
+  "platformTrials": "On trial",
+  "platformDirectory": "Your agencies",
+  "platformResults": "{count} agencies shown",
+  "platformSearch": "Search agencies",
+  "platformSearchPlaceholder": "Name or identifier…",
+  "platformNoResults": "No agencies match your search.",
+  "platformGrow": "Grow your network",
+  "platformNoExpiry": "No expiry",
+  "platformLegacy": "Legacy",
+  "platformTrial": "Trial",
+  "platformPastDue": "Past due",
+  "platformCanceled": "Canceled"
 }

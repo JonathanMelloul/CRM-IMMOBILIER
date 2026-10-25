@@ -11,6 +11,7 @@ export default function Platform({userId,page}:{userId:string;page:boolean}) {
  const t=useTranslations(),locale=useLocale();
  const [allowed,setAllowed]=useState<boolean|null>(null),[target,setTarget]=useState<HTMLElement|null>(null);
  const [agencies,setAgencies]=useState<Agency[]>([]),[error,setError]=useState(''),[busy,setBusy]=useState(false);
+ const [search,setSearch]=useState('');
  const [name,setName]=useState(''),[slug,setSlug]=useState(''),[created,setCreated]=useState(false);
  useEffect(()=>{
   let live=true;setAllowed(null);setError('');setAgencies([]);
@@ -43,5 +44,33 @@ export default function Platform({userId,page}:{userId:string;page:boolean}) {
   }catch{setError(t('platformCreateError'));}finally{setBusy(false);}
  }
  const navigation=allowed&&target?createPortal(<Link className={`navlink ${page?'active':''}`} href={`/${locale}/platform`} aria-current={page?'page':undefined}>{t('platformTitle')}</Link>,target):null;
- return <>{navigation}{page&&<section className="panel"><h1>{t('platformTitle')}</h1>{error&&<p role="alert" className="error">{error}</p>}{allowed===null?<p role="status">{t('loading')}</p>:!allowed?<p>{t('platformDenied')}</p>:<><p>{t('platformHelp')}</p><h2>{t('platformCreate')}</h2><form onSubmit={create} className="grid gap-4 max-w-lg"><label>{t('name')}<input required maxLength={150} value={name} onChange={e=>setName(e.target.value)}/></label><label>{t('platformSlug')}<input required minLength={2} maxLength={63} pattern="[a-z0-9][a-z0-9-]{1,62}" value={slug} onChange={e=>setSlug(e.target.value)} aria-describedby="agency-slug-help"/></label><p id="agency-slug-help">{t('platformSlugHelp')}</p><button disabled={busy}>{t(busy?'loading':'platformCreate')}</button></form>{created&&<p role="status">{t('platformCreated')}</p>}<h2>{t('platformAgencies')}</h2>{agencies.length===0?<p>{t('platformEmpty')}</p>:<ul>{agencies.map(agency=><li key={agency.id}><strong dir="auto">{agency.name}</strong> — {agency.slug}<p>{t('platformStatus')}: {t(agency.status==='suspended'?'platformSuspended':'platformActive')} · {t('platformSubscription')}: {agency.subscription_status}{agency.access_until&&<> · {t('platformExpiry')}: {new Intl.DateTimeFormat(locale,{dateStyle:'medium',timeZone:'Asia/Jerusalem'}).format(new Date(agency.access_until))}</>}</p><AgencyInvitation agencyId={agency.id} agencyName={agency.name} enabled={agency.status==='active'&&(agency.subscription_status==='legacy'||(['trialing','active'].includes(agency.subscription_status)&&Date.parse(agency.access_until??'')>Date.now()))}/></li>)}</ul>}</>}</section>}</>;
+ const visibleAgencies=agencies.filter(agency=>`${agency.name} ${agency.slug}`.toLocaleLowerCase(locale).includes(search.toLocaleLowerCase(locale).trim()));
+ const activeCount=agencies.filter(agency=>agency.status==='active').length;
+ const trialCount=agencies.filter(agency=>agency.subscription_status==='trialing').length;
+ const subscriptions:Record<string,string>={legacy:'platformLegacy',trialing:'platformTrial',active:'platformActive',past_due:'platformPastDue',canceled:'platformCanceled'};
+ return <>{navigation}{page&&<section className="agency-console">
+  <header className="agency-hero">
+   <div><span className="agency-eyebrow">{t('platformOverview')}</span><h1>{t('platformAgencies')}</h1><p>{t('platformIntro')}</p></div>
+   {allowed&&<a className="agency-primary" href="#create-agency"><span aria-hidden="true">＋</span>{t('platformCreate')}</a>}
+  </header>
+  {error&&<p role="alert" className="error">{error}</p>}
+  {allowed===null?<p role="status">{t('loading')}</p>:!allowed?<div className="agency-empty">{t('platformDenied')}</div>:<>
+   <div className="agency-stats">
+    <div><span className="agency-stat-icon" aria-hidden="true">▦</span><div><span>{t('platformTotal')}</span><strong>{agencies.length}</strong></div></div>
+    <div><span className="agency-stat-icon agency-stat-green" aria-hidden="true">✓</span><div><span>{t('platformActiveAgencies')}</span><strong>{activeCount}</strong></div></div>
+    <div><span className="agency-stat-icon agency-stat-amber" aria-hidden="true">◷</span><div><span>{t('platformTrials')}</span><strong>{trialCount}</strong></div></div>
+   </div>
+   <div className="agency-toolbar"><div><h2>{t('platformDirectory')}</h2><p>{t('platformResults',{count:visibleAgencies.length})}</p></div><label className="agency-search"><span>{t('platformSearch')}</span><input type="search" value={search} placeholder={t('platformSearchPlaceholder')} onChange={event=>setSearch(event.target.value)}/></label></div>
+   {visibleAgencies.length===0?<div className="agency-empty"><span aria-hidden="true">▦</span><h3>{t(agencies.length?'platformNoResults':'platformEmpty')}</h3></div>:<div className="agency-grid">{visibleAgencies.map(agency=>{
+    const enabled=agency.status==='active'&&(agency.subscription_status==='legacy'||(['trialing','active'].includes(agency.subscription_status)&&Date.parse(agency.access_until??'')>Date.now()));
+    return <article className="agency-card" key={agency.id}>
+     <div className="agency-card-heading"><div className="agency-avatar" aria-hidden="true">{Array.from(agency.name.trim())[0]?.toLocaleUpperCase(locale)||'A'}</div><span className={`agency-status ${agency.status==='suspended'?'agency-status-paused':''}`}><i aria-hidden="true"/>{t(agency.status==='suspended'?'platformSuspended':'platformActive')}</span></div>
+     <h3 dir="auto">{agency.name}</h3><p className="agency-slug" dir="ltr">{agency.slug}</p>
+     <div className="agency-card-meta"><div><span>{t('platformSubscription')}</span><strong className={`agency-plan ${agency.subscription_status==='trialing'?'agency-plan-trial':''}`}>{subscriptions[agency.subscription_status]?t(subscriptions[agency.subscription_status]):agency.subscription_status}</strong></div><div><span>{t('platformExpiry')}</span><strong>{agency.access_until?new Intl.DateTimeFormat(locale,{dateStyle:'medium',timeZone:'Asia/Jerusalem'}).format(new Date(agency.access_until)):t('platformNoExpiry')}</strong></div></div>
+     <AgencyInvitation agencyId={agency.id} agencyName={agency.name} enabled={enabled}/>
+    </article>;
+   })}</div>}
+   <section id="create-agency" className="agency-create"><div className="agency-create-intro"><span className="agency-eyebrow">{t('platformGrow')}</span><h2>{t('platformCreate')}</h2><p>{t('platformHelp')}</p></div><div><form onSubmit={create} className="agency-create-form"><label>{t('name')}<input required maxLength={150} value={name} onChange={event=>setName(event.target.value)}/></label><label>{t('platformSlug')}<input required minLength={2} maxLength={63} pattern="[a-z0-9][a-z0-9-]{1,62}" value={slug} onChange={event=>setSlug(event.target.value)} aria-describedby="agency-slug-help"/></label><p id="agency-slug-help">{t('platformSlugHelp')}</p><button disabled={busy}>{t(busy?'loading':'platformCreate')}</button></form>{created&&<p role="status" className="success">{t('platformCreated')}</p>}</div></section>
+  </>}
+ </section>}</>;
 }

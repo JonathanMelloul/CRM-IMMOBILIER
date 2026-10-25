@@ -337,5 +337,21 @@
   "platformInviteLimit": "יותר מדי הזמנות. המתינו לפני ניסיון נוסף.",
   "platformInviteError": "לא ניתן להזמין. בדקו את הגדרות SaaS לפני ניסיון נוסף.",
   "platformInviteUncertain": "תוצאת השליחה אינה ידועה. בדקו את החשבון ב-Supabase לפני שליחה חוזרת.",
-  "platformInviteDisabled": "הזמנות מושבתות עבור סוכנויות מושהות או גישה שפג תוקפה."
+  "platformInviteDisabled": "הזמנות מושבתות עבור סוכנויות מושהות או גישה שפג תוקפה.",
+  "platformOverview": "הרשת שלכם",
+  "platformIntro": "מקום אחד לניהול הסוכנויות ולקבלת הצוותים שלהן.",
+  "platformTotal": "כל הסוכנויות",
+  "platformActiveAgencies": "סוכנויות פעילות",
+  "platformTrials": "בתקופת ניסיון",
+  "platformDirectory": "הסוכנויות שלכם",
+  "platformResults": "{count} סוכנויות מוצגות",
+  "platformSearch": "חיפוש סוכנות",
+  "platformSearchPlaceholder": "שם או מזהה…",
+  "platformNoResults": "אין סוכנויות התואמות לחיפוש.",
+  "platformGrow": "הרחבת הרשת",
+  "platformNoExpiry": "ללא תאריך סיום",
+  "platformLegacy": "ותיק",
+  "platformTrial": "ניסיון",
+  "platformPastDue": "תשלום באיחור",
+  "platformCanceled": "בוטל"
 }

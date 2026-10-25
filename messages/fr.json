@@ -337,5 +337,21 @@
   "platformInviteLimit": "Trop d’invitations. Patientez avant de réessayer.",
   "platformInviteError": "Invitation impossible. Vérifiez la configuration SaaS et réessayez après diagnostic.",
   "platformInviteUncertain": "Le résultat de l’envoi est inconnu. Vérifiez le compte dans Supabase avant de renvoyer une invitation.",
-  "platformInviteDisabled": "Les invitations sont désactivées pour une agence suspendue ou dont l’accès a expiré."
+  "platformInviteDisabled": "Les invitations sont désactivées pour une agence suspendue ou dont l’accès a expiré.",
+  "platformOverview": "Votre réseau",
+  "platformIntro": "Un espace pour piloter vos agences et accueillir leurs équipes.",
+  "platformTotal": "Total des agences",
+  "platformActiveAgencies": "Agences actives",
+  "platformTrials": "En période d’essai",
+  "platformDirectory": "Vos agences",
+  "platformResults": "{count} agences affichées",
+  "platformSearch": "Rechercher une agence",
+  "platformSearchPlaceholder": "Nom ou identifiant…",
+  "platformNoResults": "Aucune agence ne correspond à votre recherche.",
+  "platformGrow": "Développez votre réseau",
+  "platformNoExpiry": "Sans échéance",
+  "platformLegacy": "Historique",
+  "platformTrial": "Essai",
+  "platformPastDue": "Paiement en retard",
+  "platformCanceled": "Résilié"
 }

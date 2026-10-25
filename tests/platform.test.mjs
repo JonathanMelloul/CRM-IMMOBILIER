@@ -37,7 +37,7 @@ test('platform access fails closed when MFA or context is unavailable',async()=>
 test('platform administrator can create through the authenticated RPC without agency membership',async()=>{
  const app=mount({mfa_ok:true,platform_admin:true,active:false});await app.settle();
  let tree=app.render();
- const inputs=[];function collect(node){if(!node||typeof node!=='object')return;if(Array.isArray(node)){node.forEach(collect);return;}if(node.type==='input')inputs.push(node);collect(node.props?.children);}collect(tree);
+ const inputs=[];function collect(node){if(!node||typeof node!=='object')return;if(Array.isArray(node)){node.forEach(collect);return;}if(node.type==='input'&&node.props.type!=='search')inputs.push(node);collect(node.props?.children);}collect(tree);
  inputs[0].props.onChange({target:{value:' Agence Paris '}});
  inputs[1].props.onChange({target:{value:' paris-agency '}});
  tree=app.render();await find(tree,node=>node.type==='form').props.onSubmit({preventDefault(){}});
