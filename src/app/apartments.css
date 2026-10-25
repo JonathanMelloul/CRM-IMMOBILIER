@@ -1,0 +1,24 @@
+.section-apartments .table-toolbar{display:grid;grid-template-columns:minmax(170px,1fr) minmax(200px,1.5fr) auto auto;align-items:end;gap:16px;padding:24px}
+.section-apartments .table-toolbar label{display:flex;flex-direction:column;gap:8px;width:auto;min-width:0;margin:0;font-size:12px;font-weight:600;color:#536b73}
+.section-apartments .table-toolbar label>span{display:block}
+.section-apartments .table-toolbar input,.section-apartments .table-toolbar select{height:46px;min-width:0;border:1px solid #dce5e7;border-radius:9px;background:#fff;box-sizing:border-box;margin:0;font-size:13px}
+.section-apartments .table-toolbar .search-decoration{top:auto;bottom:15px;inset-inline-start:13px;width:16px;height:16px;color:#81969d}
+.section-apartments .table-toolbar input{padding-inline-start:38px}
+.section-apartments .table-toolbar>button{min-height:46px;align-self:end;white-space:nowrap;margin:0;padding-inline:24px}
+.section-apartments .table-toolbar .results-count{display:flex;align-items:center;min-height:46px;margin:0;align-self:end;white-space:nowrap}
+.section-apartments .table-toolbar>.danger{grid-column:1/-1;justify-self:start}
+.section-apartments .apartment-filters{margin:0 24px 24px;padding:18px 20px;background:#f8faf9;border:1px solid #e2e9e6;border-radius:10px;box-shadow:none}
+.section-apartments .apartment-filters>summary{cursor:pointer;font-size:13px;font-weight:600;color:#3f605b;line-height:1.5}
+.section-apartments .apartment-filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:end;gap:20px 16px;margin-top:22px}
+.section-apartments .apartment-filter-grid>label,.section-apartments .apartment-filter-grid>fieldset{min-width:0;margin:0}
+.section-apartments .apartment-filter-grid fieldset{padding:0;border:0}
+.section-apartments .apartment-filter-grid legend{padding:0;margin-bottom:8px;font-size:12px;font-weight:600;color:#536b73}
+.section-apartments .apartment-filter-grid label{gap:8px;font-size:12px;color:#536b73}
+.section-apartments .apartment-filter-range{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.section-apartments .apartment-filter-range label{font-size:10px;font-weight:400;color:#839197}
+.section-apartments .apartment-filter-grid input,.section-apartments .apartment-filter-grid select{height:42px;min-width:0;border:1px solid #dce5e7;border-radius:8px;background:#fff;font-size:12px}
+.section-apartments .apartment-filters>button{margin-top:20px;font-size:12px;padding:10px 14px}
+.section-apartments .apartment-search-hint,.section-apartments .records-empty{margin:0;padding:24px;line-height:1.7;font-size:13px;border-top:1px solid #edf1ef;background:#fbfcfc;overflow-wrap:anywhere}
+.section-records:not(.section-apartments) .records-empty{margin:0;padding:24px}
+@media(max-width:1100px){.section-apartments .table-toolbar{grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto}.section-apartments .table-toolbar .results-count{grid-column:1/-1;justify-self:start}.section-apartments .apartment-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.section-apartments .table-toolbar{grid-template-columns:minmax(0,1fr);padding:16px;gap:14px}.section-apartments .table-toolbar>button{width:100%;justify-self:stretch}.section-apartments .apartment-filters{margin:0 16px 16px;padding:16px}.section-apartments .apartment-filter-grid{grid-template-columns:minmax(0,1fr);gap:16px}.section-apartments .apartment-search-hint,.section-apartments .records-empty{padding:20px 16px}.section-records:not(.section-apartments) .records-empty{padding:20px 16px}}
