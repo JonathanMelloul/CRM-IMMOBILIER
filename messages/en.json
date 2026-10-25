@@ -353,5 +353,11 @@
   "platformLegacy": "Legacy",
   "platformTrial": "Trial",
   "platformPastDue": "Past due",
-  "platformCanceled": "Canceled"
+  "platformCanceled": "Canceled",
+  "platformAdministrators": "Agency administrators",
+  "platformAdministratorsError": "Unable to load administrators. Check your session and the Supabase server key in Vercel.",
+  "platformNoAdministrator": "No administrator assigned to this agency.",
+  "platformAdministratorUnnamed": "Name not provided",
+  "platformAdministratorNoEmail": "Email not provided",
+  "platformAdministratorInactive": "Disabled account"
 }

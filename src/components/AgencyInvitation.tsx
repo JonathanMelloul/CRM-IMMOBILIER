@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {useLocale,useTranslations} from 'next-intl';
 import {supabase} from '@/lib/supabase';
 
-export default function AgencyInvitation({agencyId,agencyName,enabled}:{agencyId:string;agencyName:string;enabled:boolean}) {
+export default function AgencyInvitation({agencyId,agencyName,enabled,onInvited}:{agencyId:string;agencyName:string;enabled:boolean;onInvited?:()=>void}) {
  const t=useTranslations(),locale=useLocale();
  const [name,setName]=useState(''),[email,setEmail]=useState(''),[busy,setBusy]=useState(false);
  const [error,setError]=useState(''),[sent,setSent]=useState(''),[provisionFailed,setProvisionFailed]=useState(false);
@@ -20,7 +20,7 @@ export default function AgencyInvitation({agencyId,agencyName,enabled}:{agencyId
     if(result.error==='provisionFailed')setProvisionFailed(true);
     setError(t(response.status===429?'platformInviteLimit':messages[result.error]??'platformInviteError'));return;
    }
-   setSent(email.trim());setName('');setEmail('');
+   setSent(email.trim());setName('');setEmail('');onInvited?.();
   }catch{setError(t('platformInviteUncertain'));}finally{setBusy(false);}
  }
  if(!enabled)return <p className="agency-invite-disabled">{t('platformInviteDisabled')}</p>;

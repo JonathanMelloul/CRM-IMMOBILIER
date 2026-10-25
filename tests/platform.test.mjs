@@ -5,13 +5,13 @@ import vm from 'node:vm';
 import ts from 'typescript';
 
 const source=ts.transpileModule(fs.readFileSync(new URL('../src/components/Platform.tsx',import.meta.url),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX}}).outputText;
-function mount(context,{contextError=false,createError=false}={}){
+function mount(context,{contextError=false,createError=false,administrators=[],administratorsError=false}={}){
  const state=[],effects=[],calls=[];let cursor=0,initial=true;
  const rows=[{id:'agency-1',name:'Agence Paris',slug:'paris',status:'active',subscription_status:'legacy',access_until:null}];
- const db={rpc:async(name,args)=>{calls.push({name,args});return name==='crm_saas_context'?{data:context,error:contextError}:{data:'agency-2',error:createError};},from:name=>{calls.push({table:name});return {select:()=>({order:async()=>({data:rows,error:null})})};}};
+ const db={auth:{getSession:async()=>({data:{session:{access_token:'test-token'}},error:null})},rpc:async(name,args)=>{calls.push({name,args});return name==='crm_saas_context'?{data:context,error:contextError}:{data:'agency-2',error:createError};},from:name=>{calls.push({table:name});return {select:()=>({order:async()=>({data:rows,error:null})})};}};
  const jsx=(type,props)=>({type,props});const exports={};
  const translations=key=>key;
- vm.runInNewContext(source,{exports,require:name=>({react:{useState:value=>{const index=cursor++;if(initial)state[index]=value;return [state[index],next=>{state[index]=next;}];},useEffect:effect=>{if(initial)effects.push(effect);}},'react-dom':{createPortal:child=>child},'react/jsx-runtime':{jsx,jsxs:jsx,Fragment:'fragment'},'next-intl':{useLocale:()=> 'fr',useTranslations:()=>translations},'next/link':{default:'a'},'./AgencyInvitation':{default:'agency-invitation'},'@/lib/supabase':{supabase:()=>db}}[name]),document:{getElementById:()=>({})},Intl,Date});
+ vm.runInNewContext(source,{exports,require:name=>({react:{useState:value=>{const index=cursor++;if(initial)state[index]=value;return [state[index],next=>{state[index]=next;}];},useEffect:effect=>{if(initial)effects.push(effect);}},'react-dom':{createPortal:child=>child},'react/jsx-runtime':{jsx,jsxs:jsx,Fragment:'fragment'},'next-intl':{useLocale:()=> 'fr',useTranslations:()=>translations},'next/link':{default:'a'},'./AgencyInvitation':{default:'agency-invitation'},'./AgencyAdministrators':{default:'agency-administrators'},'@/lib/supabase':{supabase:()=>db}}[name]),document:{getElementById:()=>({})},fetch:async()=>({ok:!administratorsError,json:async()=>({administrators})}),AbortController,Intl,Date});
  const render=()=>{cursor=0;const tree=exports.default({userId:'user-1',page:true});initial=false;return tree;};
  render();effects.forEach(effect=>effect());
  return {calls,render,settle:()=>new Promise(resolve=>setImmediate(resolve))};
@@ -44,4 +44,15 @@ test('platform administrator can create through the authenticated RPC without ag
  const call=app.calls.find(call=>call.name==='crm_platform_create_agency');
  assert.equal(call.args.agency_name,'Agence Paris');assert.equal(call.args.agency_slug,'paris-agency');
  assert.equal(app.calls.filter(call=>call.table==='agencies').length,2);
+});
+
+test('agency cards show only administrators attached to that agency',async()=>{
+ const administrators=[{id:'a',agency_id:'agency-1',full_name:'Alice',email:'alice@example.invalid',active:true},{id:'b',agency_id:'other-agency',full_name:'Bob',email:'bob@example.invalid',active:true}];
+ const app=mount({mfa_ok:true,platform_admin:true},{administrators});await app.settle();
+ const contacts=find(app.render(),node=>node.type==='agency-administrators');
+ assert.equal(contacts.props.members.length,1);assert.equal(contacts.props.members[0].email,'alice@example.invalid');assert.equal(contacts.props.error,false);
+});
+test('failed contact lookup stays distinct from an agency without an administrator',async()=>{
+ const app=mount({mfa_ok:true,platform_admin:true},{administratorsError:true});await app.settle();
+ const contacts=find(app.render(),node=>node.type==='agency-administrators');assert.equal(contacts.props.error,true);assert.equal(contacts.props.members,null);
 });

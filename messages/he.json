@@ -353,5 +353,11 @@
   "platformLegacy": "ותיק",
   "platformTrial": "ניסיון",
   "platformPastDue": "תשלום באיחור",
-  "platformCanceled": "בוטל"
+  "platformCanceled": "בוטל",
+  "platformAdministrators": "מנהלי הסוכנות",
+  "platformAdministratorsError": "לא ניתן לטעון את המנהלים. בדקו את החיבור ואת מפתח השרת של Supabase ב-Vercel.",
+  "platformNoAdministrator": "אין מנהל המשויך לסוכנות זו.",
+  "platformAdministratorUnnamed": "לא הוזן שם",
+  "platformAdministratorNoEmail": "לא הוזן דוא״ל",
+  "platformAdministratorInactive": "חשבון מושבת"
 }

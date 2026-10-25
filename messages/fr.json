@@ -353,5 +353,11 @@
   "platformLegacy": "Historique",
   "platformTrial": "Essai",
   "platformPastDue": "Paiement en retard",
-  "platformCanceled": "Résilié"
+  "platformCanceled": "Résilié",
+  "platformAdministrators": "Administrateurs de l’agence",
+  "platformAdministratorsError": "Impossible de charger les administrateurs. Vérifiez votre session et la clé serveur Supabase dans Vercel.",
+  "platformNoAdministrator": "Aucun administrateur rattaché à cette agence.",
+  "platformAdministratorUnnamed": "Nom non renseigné",
+  "platformAdministratorNoEmail": "E-mail non renseigné",
+  "platformAdministratorInactive": "Compte désactivé"
 }

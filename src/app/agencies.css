@@ -39,6 +39,16 @@
 .agency-console .agency-card-meta strong{font-size:12px;color:#526a73;font-weight:600}
 .agency-console .agency-plan{display:inline-flex;width:fit-content;background:#f0f4f6;border-radius:6px;padding:4px 7px}
 .agency-console .agency-plan-trial{color:#9a742c!important;background:#faf3e5}
+.agency-console .agency-administrators{border-top:1px solid #edf1ef;padding:18px 0}
+.agency-console .agency-administrators h4{margin:0 0 12px;font-size:11px;font-weight:600;color:#869195}
+.agency-console .agency-administrators>p{font-size:12px;color:#7c8c90;line-height:1.6}
+.agency-console .agency-administrators ul{display:grid;gap:13px;list-style:none;margin:0;padding:0}
+.agency-console .agency-administrators li{display:flex;align-items:flex-start;gap:10px}
+.agency-console .agency-admin-avatar{display:grid;place-items:center;flex-shrink:0;width:32px;height:32px;background:#edf3f1;border:1px solid #e1e9e5;border-radius:50%;color:#5c8074;font-size:12px;font-weight:700}
+.agency-console .agency-administrators li>div{display:grid;gap:4px;min-width:0}
+.agency-console .agency-administrators strong{font-size:12px;font-weight:600;color:#365a61;overflow-wrap:anywhere}
+.agency-console .agency-administrators li>div>span{font-size:11px;color:#7d8f94;overflow-wrap:anywhere;text-align:start}
+.agency-console .agency-administrators small,.agency-console .agency-admin-warning{font-size:11px;color:#a16d3d}
 .agency-console .agency-invitation{border-top:1px solid #edf1ef;padding-top:16px}
 .agency-console .agency-invitation>summary{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;list-style:none;color:#316b64;font-size:12px;font-weight:700;border-radius:6px;padding:5px 0}
 .agency-console .agency-invitation>summary::-webkit-details-marker{display:none}
