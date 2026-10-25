@@ -22,3 +22,9 @@
 .section-records:not(.section-apartments) .records-empty{margin:0;padding:24px}
 @media(max-width:1100px){.section-apartments .table-toolbar{grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto}.section-apartments .table-toolbar .results-count{grid-column:1/-1;justify-self:start}.section-apartments .apartment-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.section-apartments .table-toolbar{grid-template-columns:minmax(0,1fr);padding:16px;gap:14px}.section-apartments .table-toolbar>button{width:100%;justify-self:stretch}.section-apartments .apartment-filters{margin:0 16px 16px;padding:16px}.section-apartments .apartment-filter-grid{grid-template-columns:minmax(0,1fr);gap:16px}.section-apartments .apartment-search-hint,.section-apartments .records-empty{padding:20px 16px}.section-records:not(.section-apartments) .records-empty{padding:20px 16px}}
+.app-shell>.main,.main>.content-area{min-width:0}
+.section-apartments.table-panel{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
+.section-apartments .table-toolbar,.section-apartments .apartment-filter-grid,.section-apartments .apartment-filter-range{min-width:0;max-width:100%;box-sizing:border-box}
+.section-apartments input,.section-apartments select{width:100%;max-width:100%;box-sizing:border-box}
+.section-apartments .prospect-list-scroll{width:100%;max-width:100%;min-width:0;overflow-x:auto}
+.section-apartments .apartment-search-hint,.section-apartments .records-empty{width:100%;max-width:100%;box-sizing:border-box;white-space:normal;word-break:normal;overflow-wrap:anywhere;text-align:start}
