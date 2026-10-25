@@ -307,5 +307,21 @@
   "dossierView": "Voir",
   "dossierPreviewClose": "Fermer l’aperçu",
   "dossierPreviewError": "Impossible d’afficher ce fichier. Vérifie la connexion et tes droits, ou télécharge-le pour l’ouvrir.",
-  "dossierPdfPreviewHelp": "Si ton navigateur n’affiche pas les PDF, ferme cet aperçu puis utilise Télécharger."
+  "dossierPdfPreviewHelp": "Si ton navigateur n’affiche pas les PDF, ferme cet aperçu puis utilise Télécharger.",
+  "platformTitle": "Plateforme",
+  "platformHelp": "Gestion des agences réservée aux super administrateurs. Chaque nouvelle agence démarre avec un essai de 14 jours ; aucun paiement automatique n’est activé.",
+  "platformCreate": "Créer une agence",
+  "platformSlug": "Identifiant de l’agence",
+  "platformSlugHelp": "De 2 à 63 caractères : lettres minuscules, chiffres et tirets. Exemple : agence-paris.",
+  "platformCreated": "Agence créée. Son administrateur doit encore être invité et rattaché à cette agence avant de pouvoir y accéder.",
+  "platformAgencies": "Agences",
+  "platformEmpty": "Aucune agence.",
+  "platformDenied": "Accès réservé aux super administrateurs.",
+  "platformLoadError": "Impossible de charger la plateforme. Vérifiez votre session et la configuration SaaS.",
+  "platformCreateError": "Création impossible. Vérifiez les champs et choisissez un identifiant unique.",
+  "platformStatus": "État",
+  "platformActive": "Active",
+  "platformSuspended": "Suspendue",
+  "platformSubscription": "Abonnement",
+  "platformExpiry": "Accès jusqu’au"
 }

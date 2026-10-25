@@ -307,5 +307,21 @@
   "dossierView": "צפייה",
   "dossierPreviewClose": "סגירת תצוגה מקדימה",
   "dossierPreviewError": "לא ניתן להציג את הקובץ. יש לבדוק חיבור והרשאות, או להוריד אותו לפתיחה.",
-  "dossierPdfPreviewHelp": "אם הדפדפן אינו מציג PDF, יש לסגור את התצוגה המקדימה ולהשתמש בהורדה."
+  "dossierPdfPreviewHelp": "אם הדפדפן אינו מציג PDF, יש לסגור את התצוגה המקדימה ולהשתמש בהורדה.",
+  "platformTitle": "פלטפורמה",
+  "platformHelp": "ניהול סוכנויות זמין למנהלי הפלטפורמה בלבד. כל סוכנות חדשה מתחילה בתקופת ניסיון של 14 ימים; אין חיוב אוטומטי.",
+  "platformCreate": "יצירת סוכנות",
+  "platformSlug": "מזהה סוכנות",
+  "platformSlugHelp": "2 עד 63 תווים: אותיות קטנות באנגלית, ספרות ומקפים. לדוגמה: paris-agency.",
+  "platformCreated": "הסוכנות נוצרה. יש עדיין להזמין את מנהל הסוכנות ולשייך אותו אליה לפני שיוכל לגשת אליה.",
+  "platformAgencies": "סוכנויות",
+  "platformEmpty": "אין סוכנויות.",
+  "platformDenied": "הגישה מוגבלת למנהלי הפלטפורמה.",
+  "platformLoadError": "לא ניתן לטעון את הפלטפורמה. בדקו את החיבור ואת הגדרות SaaS.",
+  "platformCreateError": "לא ניתן ליצור סוכנות. בדקו את השדות ובחרו מזהה ייחודי.",
+  "platformStatus": "מצב",
+  "platformActive": "פעילה",
+  "platformSuspended": "מושהית",
+  "platformSubscription": "מנוי",
+  "platformExpiry": "גישה עד"
 }
