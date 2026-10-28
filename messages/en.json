@@ -359,5 +359,6 @@
   "platformNoAdministrator": "No administrator assigned to this agency.",
   "platformAdministratorUnnamed": "Name not provided",
   "platformAdministratorNoEmail": "Email not provided",
-  "platformAdministratorInactive": "Disabled account"
+  "platformAdministratorInactive": "Disabled account",
+  "paymentPercentage": "Percentage of property price (%)"
 }

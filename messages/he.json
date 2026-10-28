@@ -359,5 +359,6 @@
   "platformNoAdministrator": "אין מנהל המשויך לסוכנות זו.",
   "platformAdministratorUnnamed": "לא הוזן שם",
   "platformAdministratorNoEmail": "לא הוזן דוא״ל",
-  "platformAdministratorInactive": "חשבון מושבת"
+  "platformAdministratorInactive": "חשבון מושבת",
+  "paymentPercentage": "אחוז ממחיר הנכס (%)"
 }

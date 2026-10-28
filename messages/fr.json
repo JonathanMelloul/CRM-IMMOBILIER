@@ -359,5 +359,6 @@
   "platformNoAdministrator": "Aucun administrateur rattaché à cette agence.",
   "platformAdministratorUnnamed": "Nom non renseigné",
   "platformAdministratorNoEmail": "E-mail non renseigné",
-  "platformAdministratorInactive": "Compte désactivé"
+  "platformAdministratorInactive": "Compte désactivé",
+  "paymentPercentage": "Pourcentage du prix du bien (%)"
 }
