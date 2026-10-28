@@ -56,7 +56,7 @@ export default function Platform({userId,page}:{userId:string;page:boolean}) {
    setAgencies(list.data??[]);
   }catch{setError(t('platformCreateError'));}finally{setBusy(false);}
  }
- const navigation=allowed&&target?createPortal(<Link className={`navlink ${page?'active':''}`} href={`/${locale}/platform`} aria-current={page?'page':undefined}>{t('platformTitle')}</Link>,target):null;
+ const navigation=allowed&&target?createPortal(<Link className={`navlink ${page?'active':''}`} href={`/${locale}/platform`} aria-current={page?'page':undefined}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 21V7h8v14M11 3h10v18M1 21h22M6 11h2M6 15h2M14 7h2M14 11h2M14 15h2M18 7h1M18 11h1M18 15h1"/></svg><span>{t('platformTitle')}</span></Link>,target):null;
  const visibleAgencies=agencies.filter(agency=>`${agency.name} ${agency.slug}`.toLocaleLowerCase(locale).includes(search.toLocaleLowerCase(locale).trim()));
  const activeCount=agencies.filter(agency=>agency.status==='active').length;
  const trialCount=agencies.filter(agency=>agency.subscription_status==='trialing').length;
