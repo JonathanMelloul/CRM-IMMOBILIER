@@ -3,3 +3,27 @@
 .sheet-percentage{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;font-size:12px}.payment-sheet .sheet-percentage input{width:90px;border-color:#a2b7df35}
 
 .sheet-signature .sheet-payment-label{display:flex;align-items:center;justify-content:space-between;gap:16px}.sheet-signature .sheet-percentage{margin-top:0;flex-shrink:0}.sheet-signature .sheet-percentage input{width:80px}
+
+/* Keep payment labels, editable values and calculated amounts distinct. */
+.payment-editor .payment-sheet{background:#fff;color:#172b35;border-color:#a9bac4}
+.payment-editor .payment-sheet th,.payment-editor .payment-sheet td{color:#172b35;font-size:16px;line-height:1.55;border-color:#c5d1d9}
+.payment-editor .payment-sheet td:first-child{font-weight:650}
+.payment-editor .payment-sheet td[dir=ltr]{font-size:17px;font-weight:650;font-variant-numeric:tabular-nums}
+.payment-editor .payment-sheet thead th{color:#344b59;font-size:14px;font-weight:700;background:#edf2f6}
+.payment-editor .payment-sheet .sheet-heading{color:#172b35;font-size:22px;font-weight:750;background:#e5edf3}
+.payment-editor .payment-sheet .sheet-group h3{color:#233e4b;font-size:18px;font-weight:750}
+.payment-editor .payment-sheet .sheet-signature h3{color:#24543e;background:#e4f0e9}
+.payment-editor .payment-sheet input,.payment-editor .payment-sheet textarea{color:#132d4a;background:#fff;border:1px solid #8da5b5;font-size:16px;font-weight:650;min-height:42px}
+.payment-editor .payment-sheet input::placeholder,.payment-editor .payment-sheet textarea::placeholder{color:#526575;opacity:1;font-weight:400}
+.payment-editor .payment-sheet input:focus,.payment-editor .payment-sheet textarea:focus{border-color:#1d4ed8;outline:2px solid #1d4ed8;outline-offset:2px;background:#f0f6ff}
+.payment-editor .payment-sheet .sheet-percentage{color:#344b59;font-size:14px;font-weight:600}
+.payment-editor .payment-sheet .sheet-percentage input{color:#123e73;background:#edf5ff;border-color:#6d92bd;font-size:17px;font-weight:750}
+.payment-editor .payment-sheet .sheet-currency{color:#3d5360;font-size:15px;font-weight:650}
+.payment-editor .payment-sheet .sheet-total th,.payment-editor .payment-sheet .sheet-total td{color:#633b0a;background:#ffebc7;font-size:17px;font-weight:750;border-color:#d5ac68}
+.payment-editor .payment-sheet .sheet-notes{color:#344b59;font-size:15px}
+
+.payment-sheet .sheet-payments-table th:first-child,.payment-sheet .sheet-payments-table td:first-child,.quote-document .payment-sheet .sheet-payments-table th:first-child,.quote-document .payment-sheet .sheet-payments-table td:first-child{width:40%}
+.payment-sheet .sheet-payments-table th:nth-child(2),.payment-sheet .sheet-payments-table td:nth-child(2),.quote-document .payment-sheet .sheet-payments-table th:nth-child(2),.quote-document .payment-sheet .sheet-payments-table td:nth-child(2){width:16%}
+.payment-sheet .sheet-payments-table th:nth-child(3),.payment-sheet .sheet-payments-table td:nth-child(3),.payment-sheet .sheet-payments-table th:nth-child(4),.payment-sheet .sheet-payments-table td:nth-child(4),.quote-document .payment-sheet .sheet-payments-table th:nth-child(3),.quote-document .payment-sheet .sheet-payments-table td:nth-child(3),.quote-document .payment-sheet .sheet-payments-table th:nth-child(4),.quote-document .payment-sheet .sheet-payments-table td:nth-child(4){width:22%}
+.payment-sheet .sheet-percentage-cell .sheet-percentage{margin:0;justify-content:center}
+.payment-sheet .sheet-percentage-cell input{width:100%;max-width:90px;text-align:center;direction:ltr}
