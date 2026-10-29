@@ -12,6 +12,7 @@ import '../reference-theme.css';
 import '../world-clocks.css';
 import '../agencies.css';
 import '../apartments.css';
+import '../crm-polish.css';
 export const metadata={title:'Yonathan Immobilier',description:'CRM immobilier'};
 const locales=['fr','he','en'];
 export function generateStaticParams(){return locales.map(locale=>({locale}));}

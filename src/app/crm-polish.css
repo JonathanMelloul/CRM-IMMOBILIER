@@ -1,0 +1,99 @@
+/* Shared CRM surfaces; printable quote documents keep their own styling. */
+.main {
+ background:radial-gradient(ellipse at 95% 0, #fff3e655, transparent 42%), #f5f7fa;
+}
+.sidebar {
+ background:linear-gradient(170deg, #243b40 0%, #192b31 100%);
+ box-shadow:4px 0 24px #16303b0a;
+}
+.sidebar .navitems {gap:5px}
+.sidebar .navlink {border-radius:10px;transition:background .18s ease,color .18s ease}
+.sidebar .navlink:hover {background:#ffffff0f}
+.sidebar .navlink.active {
+ background:#ffffff12;
+ box-shadow:none;
+ border-inline-start:3px solid #f3a348;
+ padding-inline-start:9px;
+ color:#fff;
+}
+.sidebar .brand-symbol {box-shadow:0 5px 18px #ed942633}
+.main .topbar {min-height:74px;height:auto;padding-block:15px;box-shadow:0 2px 12px #20303403}
+.main .content-area {padding-block-start:28px;padding-block-end:56px}
+.content-area h1 {
+ color:#a85c12!important;
+ font-weight:750;
+ letter-spacing:-.025em;
+ background:linear-gradient(110deg,#fff9f1,#fff);
+ border-color:#f0dcc2;
+ border-inline-start-color:#ed9426;
+ box-shadow:0 3px 12px #b8792106;
+}
+.content-area .panel,
+.content-area .card:nth-child(n) {
+ border-color:#e3e9ed;
+ border-radius:16px;
+ box-shadow:0 4px 20px #203b4805;
+}
+.content-area .card:nth-child(n) {
+ position:relative;
+ overflow:hidden;
+ padding:24px;
+ transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+.content-area .card::before {
+ content:'';position:absolute;inset-block:20px;inset-inline-start:0;width:3px;
+ border-radius:4px;background:#e99431;
+}
+.content-area .card:nth-child(n):hover {
+ transform:translateY(-2px);
+ background:#fff;
+ border-color:#edcba0;
+ box-shadow:0 10px 28px #203b480c;
+}
+.content-area .card strong {font-size:2.2rem;font-weight:750;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.content-area .card>.muted {color:#63777f;font-weight:600}
+.content-area .metric-top {margin-bottom:18px}
+.content-area .metric-icon {border-radius:12px;background:#fff2e0;color:#a96114}
+.content-area .table-panel {overflow:hidden}
+.content-area .section-records .table-toolbar {
+ padding:22px 24px;background:linear-gradient(180deg,#fff,#fcfdfe);gap:16px;
+}
+.content-area .section-records .table-toolbar h2 {font-size:1.05rem;font-weight:700}
+.content-area .section-records .results-count {
+ background:#f0f4f6;border:1px solid #e4ebef;border-radius:999px;
+ color:#536b76;padding:6px 12px;font-size:12px;font-weight:600;
+ width:fit-content;justify-self:end;
+}
+.content-area .section-records .prospect-list thead th {
+ background:#f3f6f8;color:#536b76;font-size:12px;font-weight:650;
+ padding-block:15px;white-space:nowrap;
+}
+.content-area .section-records .prospect-list tbody td {padding-block:17px;border-color:#eef1f4;font-variant-numeric:tabular-nums}
+.content-area .section-records .prospect-list tbody tr:nth-child(even) td {background:#fbfcfd}
+.content-area .section-records .prospect-list tbody tr:hover td {background:#fff8ed}
+.content-area .section-records .status-pill {border-radius:999px;padding:5px 11px;font-weight:600}
+.content-area .section-records .record-action {border-radius:8px;padding:7px 11px;font-weight:650}
+.content-area .panel label {color:#526b76}
+.content-area .panel input:not([type=checkbox]),
+.content-area .panel select,
+.content-area .panel textarea {border-radius:9px;border-color:#dce5ea}
+.content-area .panel input:not([type=checkbox]):focus,
+.content-area .panel select:focus,
+.content-area .panel textarea:focus {border-color:#c77c25;box-shadow:0 0 0 3px #ed94261a}
+.content-area .record-detail dt {color:#647b84}
+.content-area .record-detail dd {font-weight:500;line-height:1.65}
+.content-area .project-dossier fieldset {min-width:0}
+.content-area .project-dossier fieldset+fieldset {margin-block-start:12px}
+.content-area .project-dossier fieldset>legend {background:linear-gradient(100deg,#fff3e2,#fffaf4);border-radius:10px}
+@media(max-width:767px) {
+ .sidebar .navlink.active {border-inline-start:0;border-block-end:3px solid #f3a348;padding-inline-start:10px}
+ .main .topbar {min-height:58px;padding-block:12px}
+ .main .content-area {padding:20px 14px 36px}
+ .content-area .card:nth-child(n) {padding:20px}
+ .content-area .section-records .table-toolbar {padding:18px 16px}
+ .content-area .panel {border-radius:12px}
+}
+@media(prefers-reduced-motion:reduce) {
+ .sidebar .navlink,.content-area .card:nth-child(n) {transition:none}
+ .content-area .card:nth-child(n):hover {transform:none}
+}

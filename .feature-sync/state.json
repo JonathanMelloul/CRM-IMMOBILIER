@@ -1,5 +1,5 @@
 {
-  "commit": "793d4153c9484e17d8bca96a9158d9346f098706",
+  "commit": "a8b9c92f055947b214aa5240fc959f2981aba382",
   "files": {
     "messages/en.json": "ff415da1140f98dbb6251c820794fe39631eeb7a6c5c3a5764a8f3500f4dfacb",
     "messages/fr.json": "ed1e78bf095eb515e4213786e351e7a8d77c4f0208b7ec0edbe2ae3c14d29336",
@@ -12,12 +12,13 @@
     "src/app/(redirect)/layout.tsx": "e4621579f419ab12f59ab8f8d96f4fc6dce92db28b2294b8ade91359dcd50a60",
     "src/app/(redirect)/page.tsx": "64820d871ed73891020a91d78b56d3d9d0a4343c4bce9c0f91cc61f72cad8f7c",
     "src/app/[locale]/[[...path]]/page.tsx": "01edd6c19f214dbd6edbd628a720d5daac30d04515fb168d788373190287a137",
-    "src/app/[locale]/layout.tsx": "dcbf2a5140df201d98199ac0e63fd9c6288a18f39d5af8b8b07e054e4a18a623",
+    "src/app/[locale]/layout.tsx": "eb93c468b49ad4803439b3561029e10c6c8602334be7b4be1a2f159422f14007",
     "src/app/agencies.css": "02293f8151ad5aba55c13427f60695cca6848296473f781a94adff2966c0ccf0",
     "src/app/apartments.css": "73501a2e92267299e759eb949911565b6ca6f0f24d54ac6ce92e16daf0e2df58",
     "src/app/api/exchange-rate/route.ts": "e1f7515a98021f716a0d90d4c0e3e934b0bbb5a7c6bc526b082ece0504524c23",
     "src/app/api/plan-image/route.ts": "38f771734243ac039e8b23e4d0f70e46cd786be1da5a3534a3e4d77f35ae109b",
     "src/app/api/platform/administrators/route.ts": "9691d6941e4b30aa81e4b0fa224e91d7004dc9fd26c3aacdee97dcaf9c36cfe4",
+    "src/app/crm-polish.css": "f1dfc22b508dc2bebc9c9f3d902602ad08ad75223b4565323b97aa23291804b8",
     "src/app/design.css": "0a115332f25a028536c042d172fee3626006ed9ef3fd40e40fa75651e11777a6",
     "src/app/glass.css": "40d96bb85ddc4581548bb492c4267e54c7be769b17ed92a49c922a625d28046e",
     "src/app/globals.css": "e2b144c7ea10bc6f5374533928dfdd136de25b5d2783d765b4686dba90c5af2e",
