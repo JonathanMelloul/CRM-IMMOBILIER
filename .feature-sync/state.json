@@ -1,5 +1,5 @@
 {
-  "commit": "0ded0c67c52294f5393c1ae2f75a106e42c57890",
+  "commit": "df5cf0bfaf73b3ae7cf1bdd7481b5df306c069ba",
   "files": {
     "messages/en.json": "ff415da1140f98dbb6251c820794fe39631eeb7a6c5c3a5764a8f3500f4dfacb",
     "messages/fr.json": "ed1e78bf095eb515e4213786e351e7a8d77c4f0208b7ec0edbe2ae3c14d29336",
@@ -29,7 +29,7 @@
     "src/app/reference-theme.css": "26f5e300157ca6b2830461f1936e3db432bd663f451eb683647b396b2759aaa7",
     "src/app/sections.css": "0de122bc3071526f9f65cff9d26c6341720350985fb35a7460fade7cf7ebf53e",
     "src/app/vibrant.css": "39ebfaa3c72b83275fdd56aa20cb69d03727e884898d534350a86e65fe0a69a0",
-    "src/app/world-clocks.css": "70272d1e4be4e5a533c1aa461801bfce067e661956efc8924558cea59e930210",
+    "src/app/world-clocks.css": "3bae85fc2fe647c87b16bddd043c1ebaae29c6c8dee9e8313df25a1f08b4cc56",
     "src/components/AccountSecurity.tsx": "2abb86064e8afa530339566b2e1f66352fb5aad58ccf2c14ebfbaf619255cb03",
     "src/components/Administration.tsx": "97e89bd45c49718e43142d104925f61a675abb8a7e37f3ecd64060ad4bca4a6b",
     "src/components/AgencyAdministrators.tsx": "22576f47a974637979308e7379ae8427e653fae204182f80b945bec7cc78049e",
@@ -49,8 +49,8 @@
     "src/components/ProjectGallery.tsx": "463d720fe6c2b3d43a6cc1152469465612af60a417062b41fbf4818495f0f5fc",
     "src/components/ProspectImport.tsx": "8eeb0ed67b47e9ca42322a50558a862cf2582879b2269832055475be3db93b2a",
     "src/components/QuotePdf.tsx": "1d77ae74ce33deaf652563733e1522761b8bef9ef64d8e60b1204735d29a31b6",
-    "src/components/Shell.tsx": "30a84d9ae5c881fc2b01014e6ec974f634dcef7ccdd2a9c3c37596a17664fe6c",
-    "src/components/Workspace.tsx": "93596da827c52ab75e8660e92616603cef73a60ed4b9f904ac6eb1949a220f99",
+    "src/components/Shell.tsx": "780a98eca183b985b6e1ca6a4f4c46fbc5c033e377a76113257d1d91ccfbd1f4",
+    "src/components/Workspace.tsx": "afc7fe72369b77ee6b0872b35584220861f8702858dd9b28297092c158cc782e",
     "src/components/WorldClocks.tsx": "dd026c775c6c6f2cf2e96ae21a7644a8f91182fb075e327815174c86b4da530c",
     "src/lib/apartment-import.ts": "63230774350da90a369b4c7fd74af5fa3da66ff84fb6d9eafa8ec4e910a9dfec",
     "src/lib/apartment-pdf.ts": "d5459453627e022aa17648df1025a86af54b1bc42b4b2a2804871bdcb5be613d",

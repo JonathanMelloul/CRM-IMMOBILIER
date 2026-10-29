@@ -1,20 +1,21 @@
 .world-clocks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0}.world-clock{display:flex;align-items:center;gap:20px;background:#e9ecef;border:1px solid #e1e6e8;border-radius:10px;padding:22px;min-width:0}.clock-face{position:relative;width:86px;height:86px;border:2px solid #e5e9eb;border-radius:50%;background:#f1f3f5;flex-shrink:0}.clock-tick{position:absolute;inset:5px;display:block}.clock-tick:before{content:'';position:absolute;top:0;left:50%;width:2px;height:5px;background:#9aa7ac;transform:translateX(-50%)}.clock-hand{position:absolute;left:50%;bottom:50%;transform-origin:50% 100%;border-radius:3px}.clock-hour{width:4px;height:22px;margin-left:-2px;background:#203034}.clock-minute{width:3px;height:30px;margin-left:-1.5px;background:#60777e}.clock-second{width:1px;height:33px;margin-left:-.5px;background:#e99431}.clock-center{position:absolute;top:50%;left:50%;width:7px;height:7px;background:#e99431;border-radius:50%;transform:translate(-50%,-50%)}.clock-copy{min-width:0}.clock-copy h2{font-size:14px;font-weight:600;color:#34474c;margin:0 0 6px}.clock-copy time{font-size:24px;font-weight:600;letter-spacing:.5px;font-variant-numeric:tabular-nums;color:#203034}.clock-copy p{font-size:11px;color:#869296;margin-top:5px}@media(max-width:1150px){.world-clock{gap:12px;padding:16px}.clock-face{width:72px;height:72px}.clock-copy time{font-size:20px}}@media(max-width:950px){.world-clocks{grid-template-columns:minmax(0,1fr)}.world-clock{padding:18px 22px}.clock-copy time{font-size:24px}}
 
-/* Compact clocks sit beside the dashboard title. */
-.dashboard-heading{display:grid;grid-template-columns:minmax(240px,1fr) minmax(480px,1.6fr);align-items:center;gap:24px;margin-block:24px 28px}
+/* World clocks share the top bar with the dashboard breadcrumb. */
+.dashboard-heading{margin-block:24px 28px}
 .dashboard-heading h1{margin:0}
-.dashboard-heading-copy{min-width:0}
 .dashboard-heading-copy>.muted{margin-block:10px 0;line-height:1.6}
-.dashboard-heading .world-clocks{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0;min-width:0}
-.dashboard-heading .world-clock{gap:10px;padding:14px 12px;background:#fff;border-color:#e3e9ed;border-radius:12px;box-shadow:0 3px 12px #203b4804}
-.dashboard-heading .clock-face{width:48px;height:48px;background:#f6f8fa}
-.dashboard-heading .clock-tick{inset:3px}
-.dashboard-heading .clock-tick:before{width:1px;height:3px}
-.dashboard-heading .clock-hour{height:13px;width:3px;margin-left:-1.5px}
-.dashboard-heading .clock-minute{height:17px;width:2px;margin-left:-1px}
-.dashboard-heading .clock-center{width:5px;height:5px}
-.dashboard-heading .clock-copy h2{font-size:12px;margin-block:0 4px;line-height:1.4}
-.dashboard-heading .clock-copy time{font-size:20px;letter-spacing:0;line-height:1.2}
-.dashboard-heading .clock-copy p{font-size:10px;margin-block:4px 0;line-height:1.4}
-@media(max-width:1100px){.dashboard-heading{grid-template-columns:minmax(0,1fr);gap:18px}.dashboard-heading .world-clocks{max-width:680px}}
-@media(max-width:500px){.dashboard-heading{margin-block:16px 24px}.dashboard-heading .world-clocks{gap:8px}.dashboard-heading .world-clock{flex-direction:column;gap:8px;padding:12px 6px;text-align:center}.dashboard-heading .clock-copy h2{font-size:11px}.dashboard-heading .clock-copy time{font-size:19px}}
+.main .topbar{flex-wrap:wrap}
+.topbar-leading{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;min-width:0;flex:1 1 440px}
+.topbar-leading .breadcrumb{flex-wrap:wrap;gap:10px}
+.topbar-leading .world-clocks{display:flex;gap:6px;margin:0;min-width:0}
+.topbar-leading .world-clock{gap:7px;padding:6px 8px;background:#f7f9fb;border-color:#e6ebef;border-radius:9px;box-shadow:none}
+.topbar-leading .clock-face{width:32px;height:32px;background:#fff;border-width:1px}
+.topbar-leading .clock-tick{inset:2px}
+.topbar-leading .clock-tick:before{width:1px;height:2px}
+.topbar-leading .clock-hour{height:8px;width:2px;margin-left:-1px}
+.topbar-leading .clock-minute{height:11px;width:2px;margin-left:-1px}
+.topbar-leading .clock-center{width:4px;height:4px}
+.topbar-leading .clock-copy h2{font-size:10px;margin:0 0 2px;line-height:1.3;white-space:nowrap}
+.topbar-leading .clock-copy time{font-size:14px;letter-spacing:0;line-height:1.2}
+.topbar-leading .clock-copy p{display:none}
+@media(max-width:767px){.topbar-leading{flex-basis:100%}.topbar-leading .world-clocks{flex-wrap:wrap}.dashboard-heading{margin-block:16px 24px}}
