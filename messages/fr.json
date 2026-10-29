@@ -280,6 +280,7 @@
   "dossierFilesHelp": "PDF, JPG, PNG, WebP ou Excel (.xlsx, .xls). 30 fichiers maximum par envoi, 20 Mo par fichier. Un dossier doit contenir uniquement ces formats. Les fichiers restent privés selon les droits Supabase.",
   "dossierChooseFiles": "Choisir les fichiers",
   "dossierReadApartments": "Lire les appartements et les prix",
+  "dossierTableBelow": "Le tableau des appartements et des prix est affiché en bas de cette fiche projet.",
   "dossierSheet": "Feuille Excel",
   "dossierPreviewOnly": "Aperçu du fichier : les appartements ne sont pas encore enregistrés dans le projet.",
   "dossierChooseExcel": "Choisir un fichier Excel",
