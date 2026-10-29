@@ -44,3 +44,48 @@ export function hasApartmentConflict(incoming:ApartmentDraft[],existing:Record<s
 export function validProjectFile(file:{name:string;size:number}){
  return file.size>0&&file.size<=20*1024*1024&&/\.(pdf|png|jpe?g|webp|xlsx|xls)$/i.test(file.name);
 }
+
+
+export function apartmentSheetRows(matrix:string[][]):ApartmentDraft[]{
+ const header=matrix.findIndex(row=>row.some(value=>normalizeApartmentHeader(value)==='מסדירה')&&row.some(value=>normalizeApartmentHeader(value)==='בניין'));
+ if(header<0)return validateApartments(apartmentRows(matrix));
+ const headers=matrix[header].map(normalizeApartmentHeader);
+ const column=(name:string)=>headers.indexOf(normalizeApartmentHeader(name));
+ const number=column("מס' דירה"),building=column('בניין');
+ const price=column('מחירון משווקים')>=0?column('מחירון משווקים'):column('מחירון שיווק');
+ if(price<0)throw Error('price');
+ const rows=matrix.slice(header+1).filter(row=>row[number]?.trim()).map(row=>{
+  const get=(name:string)=>row[column(name)]?.trim()??'';
+  const id=[row[building]?.trim(),row[number]?.trim()].filter(Boolean).join('-');
+  const notes=['בניין','טיפוס','גג','מרפסת סוכה כן/לא','חניה','מחירון רייק','מחירון מניבים'].flatMap(name=>get(name)?[`${name}: ${get(name)}`]:[]).join(' ; ');
+  const parking=get('חניה');if(parking&&!/^\d+$/.test(parking))throw Error('parking');
+  return {apartment_number:id,reference:id,floor:get('קומה'),rooms:get("מס' חדרים"),surface:get('שטח דירה לפי מכר'),terrace:get('שטח מרפסת'),price:row[price]??'',direction:get('כיווני אוויר'),...(parking?{parking:Number(parking)>0}:{}),notes};
+ });
+ return validateApartments(rows);
+}
+
+export async function readApartmentWorkbook(buffer:ArrayBuffer){
+ const {default:ExcelJS}=await import('exceljs');const workbook=new ExcelJS.Workbook();
+ await workbook.xlsx.load(buffer as Parameters<typeof workbook.xlsx.load>[0]);
+ if(workbook.worksheets.length>30)throw Error('sheets');
+ return workbook.worksheets.map(sheet=>{
+  try{
+   if(sheet.rowCount>1005||sheet.columnCount>50)throw Error('size');
+   const matrix:string[][]=[];
+   sheet.eachRow({includeEmpty:true},row=>{
+    const cells:string[]=[];
+    row.eachCell({includeEmpty:true},(cell,col)=>{
+     let value=cell.value;
+     // Read cached scalar results only. Never evaluate formulas or follow workbook links.
+     if(value&&typeof value==='object'){
+      if('formula' in value||'sharedFormula' in value){if(value.result===undefined||value.result===null)throw Error('cached-result');value=value.result;}
+      else throw Error('cell');
+     }
+     if(value!==null&&typeof value!=='string'&&typeof value!=='number'&&typeof value!=='boolean')throw Error('cell');
+     cells[col-1]=String(value??'');
+    });matrix.push(cells);
+   });
+   return {name:sheet.name,rows:apartmentSheetRows(matrix)};
+  }catch{return {name:sheet.name,rows:null};}
+ });
+}
