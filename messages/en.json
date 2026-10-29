@@ -279,6 +279,7 @@
   "dossierFiles": "Plans, brochures and photos",
   "dossierFilesHelp": "PDF, JPG, PNG, WebP or Excel (.xlsx, .xls). Up to 30 files per upload, 20 MB each. A folder must contain only these formats. Files remain private under Supabase permissions.",
   "dossierChooseFiles": "Choose files",
+  "dossierReadApartments": "Read apartments and prices",
   "dossierChooseExcel": "Choose an Excel file",
   "dossierChooseFolder": "Choose a folder",
   "dossierUpload": "Save {count} files to project",

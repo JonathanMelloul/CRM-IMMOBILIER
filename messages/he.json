@@ -279,6 +279,7 @@
   "dossierFiles": "תוכניות, חוברות ותמונות",
   "dossierFilesHelp": "PDF, JPG, PNG, WebP או Excel (.xlsx, .xls). עד 30 קבצים בכל העלאה, עד 20 MB לקובץ. תיקייה חייבת להכיל רק פורמטים אלה. הקבצים פרטיים בהתאם להרשאות Supabase.",
   "dossierChooseFiles": "בחירת קבצים",
+  "dossierReadApartments": "קריאת הדירות והמחירים",
   "dossierChooseExcel": "בחירת קובץ Excel",
   "dossierChooseFolder": "בחירת תיקייה",
   "dossierUpload": "שמירת {count} קבצים בפרויקט",
