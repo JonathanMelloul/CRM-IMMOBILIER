@@ -23,6 +23,6 @@ test('same-project conflicts detect either reference or apartment number',()=>{
  assert.equal(hasApartmentConflict([{reference:'B'}],[{reference:'A'}]),false);
 });
 test('uploads reject unsupported formats and oversized or empty files',()=>{
- assert.equal(validProjectFile({name:'plan.PDF',size:100}),true);
- for(const file of [{name:'a.html',size:10},{name:'a.pdf',size:0},{name:'a.png',size:21*1024*1024}])assert.equal(validProjectFile(file),false);
+ for(const name of ['plan.PDF','prix.xlsx','prix.XLS'])assert.equal(validProjectFile({name,size:100}),true);
+ for(const file of [{name:'a.html',size:10},{name:'a.pdf',size:0},{name:'a.png',size:21*1024*1024},{name:'a.xlsm',size:100},{name:'a.xlsx',size:0},{name:'a.xls',size:21*1024*1024}])assert.equal(validProjectFile(file),false);
 });

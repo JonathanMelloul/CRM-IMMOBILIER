@@ -42,5 +42,5 @@ export function hasApartmentConflict(incoming:ApartmentDraft[],existing:Record<s
  return incoming.some(a=>existing.some(b=>['apartment_number','reference'].some(key=>a[key]!==undefined&&b[key]!==undefined&&b[key]!==null&&String(a[key]).trim().toLowerCase()===String(b[key]).trim().toLowerCase())));
 }
 export function validProjectFile(file:{name:string;size:number}){
- return file.size>0&&file.size<=20*1024*1024&&/\.(pdf|png|jpe?g|webp)$/i.test(file.name);
+ return file.size>0&&file.size<=20*1024*1024&&/\.(pdf|png|jpe?g|webp|xlsx|xls)$/i.test(file.name);
 }
