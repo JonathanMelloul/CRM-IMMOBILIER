@@ -365,5 +365,11 @@
   "platformAdministratorUnnamed": "Name not provided",
   "platformAdministratorNoEmail": "Email not provided",
   "platformAdministratorInactive": "Disabled account",
-  "paymentPercentage": "Percentage of property price (%)"
+  "paymentPercentage": "Percentage of property price (%)",
+  "prospectsByMonth": "Prospects by month",
+  "chooseProspectMonth": "Choose a month",
+  "allProspectMonths": "All months",
+  "unknownReceptionMonth": "Date to review",
+  "sourceComment": "File comment",
+  "prospectListTotal": "{count, plural, one {Total: # prospect} other {Total: # prospects}}"
 }

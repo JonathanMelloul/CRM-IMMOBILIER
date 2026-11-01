@@ -365,5 +365,11 @@
   "platformAdministratorUnnamed": "לא הוזן שם",
   "platformAdministratorNoEmail": "לא הוזן דוא״ל",
   "platformAdministratorInactive": "חשבון מושבת",
-  "paymentPercentage": "אחוז ממחיר הנכס (%)"
+  "paymentPercentage": "אחוז ממחיר הנכס (%)",
+  "prospectsByMonth": "לידים לפי חודש",
+  "chooseProspectMonth": "בחירת חודש",
+  "allProspectMonths": "כל החודשים",
+  "unknownReceptionMonth": "תאריך לבדיקה",
+  "sourceComment": "הערה מהקובץ",
+  "prospectListTotal": "סה״כ לידים: {count}"
 }

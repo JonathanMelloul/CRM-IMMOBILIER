@@ -1,4 +1,17 @@
-export type ImportLead={line:number;name:string;email:string;phone:string;country:string;received_on:string;received_time:string;objective:string;deadline:string;commercial:string;issue:string;duplicate:boolean;swapped:boolean};
+export type ImportLead={line:number;name:string;email:string;phone:string;country:string;received_on:string;received_time:string;objective:string;deadline:string;commercial:string;project:string;comment:string;sourceSheet:string;sourceLine:string;sourceStatus:string;issue:string;duplicate:boolean;swapped:boolean};
+
+// Preserve source labels and comments through the existing atomic import RPC.
+// These are file labels, not guessed foreign keys into the projects table.
+export function importLeadPayload(lead:ImportLead,assignedTo:string|null) {
+ const extras=[lead.project&&`Projet du fichier: ${lead.project.replace(/[\r\n]/g,' ')}`,
+  lead.sourceSheet&&`Onglet source: ${lead.sourceSheet}`,lead.sourceLine&&`Ligne source: ${lead.sourceLine}`,
+  lead.sourceStatus&&`Statut dans le fichier: ${lead.sourceStatus}`,lead.comment&&`Commentaire du fichier:\n${lead.comment}`].filter(Boolean);
+ return {...lead,assigned_to:assignedTo,objective:[lead.objective,...extras].filter(Boolean).join('\n')};
+}
+
+export function sourceProject(notes:string) {
+ return notes.match(/(?:^|\n)(?:Objectif: )?Projet du fichier: ([^\r\n]+)/)?.[1]?.trim()??'';
+}
 export function phoneKey(value:string){return value.replace(/^p:/i,'').replace(/[^\d]/g,'').replace(/^00/,'');}
 export function splitDelimited(text:string,delimiter:string){
  const rows:string[][]=[];let row:string[]=[],cell='',quoted=false;
@@ -17,7 +30,7 @@ export function parseLeads(matrix:string[][],year:number,fallback:string,existin
  const first=matrix.findIndex(r=>r.some(s=>s.trim()));if(first<0)return [];
  const header=matrix[first].map(normalize);const index=(keys:string[])=>header.findIndex(h=>keys.includes(h));
  const name=index(['nom','name','fullname']);if(name<0)throw new Error('headers');
- const keys={email:index(['email','mail']),phone:index(['telephone','tel','phone']),country:index(['pays','country']),date:index(['date','datedereception','receivedon']),time:index(['heure','time']),objective:index(['objectifdecetachat','objectif','objective']),deadline:index(['delaidachat','delai','deadline']),commercial:index(['משווקמטפל','commercial','responsable'])};
+ const keys={email:index(['email','mail']),phone:index(['telephone','tel','phone']),country:index(['pays','country']),date:index(['date','datedereception','receivedon']),time:index(['heure','time']),objective:index(['objectifdecetachat','objectif','objective']),deadline:index(['delaidachat','delai','deadline']),commercial:index(['משווקמטפל','commercial','responsable']),project:index(['projet','project']),comment:index(['commentaire','comment','notes']),sourceSheet:index(['ongletsource','sourcesheet']),sourceLine:index(['lignesource','sourceline']),sourceStatus:index(['statutsource','sourcestatus'])};
  if(keys.date<0&&header[0]==='')keys.date=0;
  const emails=new Set(existing.map(p=>String(p.email??'').trim().toLowerCase()).filter(Boolean)),phones=new Set(existing.map(p=>phoneKey(String(p.phone??''))).filter(Boolean));
  return matrix.slice(first+1).flatMap((r,i)=>{
@@ -25,6 +38,6 @@ export function parseLeads(matrix:string[][],year:number,fallback:string,existin
   const duplicate=!!((email&&emails.has(email.toLowerCase()))||(phoneKey(phone)&&phones.has(phoneKey(phone))));
   let issue=!get(name)?'name':!received_on?'date':received_time&&!/^([01]?\d|2[0-3]):[0-5]\d(?::[0-5]\d)?$/.test(received_time)?'time':email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)?'email':'';
   if(!issue){if(email)emails.add(email.toLowerCase());if(phoneKey(phone))phones.add(phoneKey(phone));}
-  return [{line:first+i+2,name:get(name),email,phone,country:get(keys.country),received_on,received_time,objective:get(keys.objective),deadline:get(keys.deadline),commercial:get(keys.commercial),issue,duplicate,swapped}];
+  return [{line:first+i+2,name:get(name),email,phone,country:get(keys.country),received_on,received_time,objective:get(keys.objective),deadline:get(keys.deadline),commercial:get(keys.commercial),project:get(keys.project),comment:get(keys.comment),sourceSheet:get(keys.sourceSheet),sourceLine:get(keys.sourceLine),sourceStatus:get(keys.sourceStatus),issue,duplicate,swapped}];
  });
 }

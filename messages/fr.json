@@ -365,5 +365,11 @@
   "platformAdministratorUnnamed": "Nom non renseigné",
   "platformAdministratorNoEmail": "E-mail non renseigné",
   "platformAdministratorInactive": "Compte désactivé",
-  "paymentPercentage": "Pourcentage du prix du bien (%)"
+  "paymentPercentage": "Pourcentage du prix du bien (%)",
+  "prospectsByMonth": "Prospects par mois",
+  "chooseProspectMonth": "Choisir un mois",
+  "allProspectMonths": "Tous les mois",
+  "unknownReceptionMonth": "Date à vérifier",
+  "sourceComment": "Commentaire du fichier",
+  "prospectListTotal": "{count, plural, =0 {Total : 0 prospect} one {Total : # prospect} other {Total : # prospects}}"
 }
