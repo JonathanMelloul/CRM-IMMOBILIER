@@ -58,3 +58,5 @@ input[type="checkbox"]:focus-visible{outline:3px solid #e88c29;outline-offset:3p
  font-weight:800;
  line-height:1.4;
 }
+
+.phone-actions{display:inline-flex;align-items:center;flex-wrap:wrap;gap:10px}.phone-call{font-size:12px;text-decoration:underline;text-underline-offset:3px}.phone-call:focus-visible{outline:2px solid currentColor;outline-offset:3px}

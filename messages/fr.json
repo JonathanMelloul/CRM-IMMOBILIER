@@ -371,5 +371,7 @@
   "allProspectMonths": "Tous les mois",
   "unknownReceptionMonth": "Date à vérifier",
   "sourceComment": "Commentaire du fichier",
-  "prospectListTotal": "{count, plural, =0 {Total : 0 prospect} one {Total : # prospect} other {Total : # prospects}}"
+  "prospectListTotal": "{count, plural, =0 {Total : 0 prospect} one {Total : # prospect} other {Total : # prospects}}",
+  "openWhatsAppWeb": "Ouvrir dans WhatsApp Web",
+  "callPhone": "Appeler"
 }

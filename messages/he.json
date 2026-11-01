@@ -371,5 +371,7 @@
   "allProspectMonths": "כל החודשים",
   "unknownReceptionMonth": "תאריך לבדיקה",
   "sourceComment": "הערה מהקובץ",
-  "prospectListTotal": "סה״כ לידים: {count}"
+  "prospectListTotal": "סה״כ לידים: {count}",
+  "openWhatsAppWeb": "פתיחה ב־WhatsApp Web",
+  "callPhone": "התקשרות"
 }
