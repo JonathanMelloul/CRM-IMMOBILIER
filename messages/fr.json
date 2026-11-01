@@ -379,5 +379,6 @@
   "prospectCommentSaveError": "Enregistrement impossible. Ton texte est conservé. Recharge la liste et vérifie tes droits avant de réessayer.",
   "sendWhatsAppMessage": "Envoyer un message WhatsApp",
   "editProspectStatus": "Modifier le statut de {name}",
-  "prospectStatusSaveError": "Statut non enregistré. Ta saisie est conservée. Recharge la liste et vérifie tes droits avant de réessayer."
+  "prospectStatusSaveError": "Statut non enregistré. Ta saisie est conservée. Recharge la liste et vérifie tes droits avant de réessayer.",
+  "prospectUnavailable": "Ce prospect est introuvable ou inaccessible. Reviens à sa fiche avant de créer un élément associé."
 }

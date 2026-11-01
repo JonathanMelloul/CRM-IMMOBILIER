@@ -379,5 +379,6 @@
   "prospectCommentSaveError": "Could not save. Your draft is preserved. Reload the list and check your permissions before trying again.",
   "sendWhatsAppMessage": "Send a WhatsApp message",
   "editProspectStatus": "Edit status for {name}",
-  "prospectStatusSaveError": "Status was not saved. Your draft is preserved. Reload the list and check your permissions before trying again."
+  "prospectStatusSaveError": "Status was not saved. Your draft is preserved. Reload the list and check your permissions before trying again.",
+  "prospectUnavailable": "This prospect is unavailable or inaccessible. Return to its record before creating a related item."
 }
