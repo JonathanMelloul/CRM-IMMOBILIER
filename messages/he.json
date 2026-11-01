@@ -373,5 +373,9 @@
   "sourceComment": "הערה מהקובץ",
   "prospectListTotal": "סה״כ לידים: {count}",
   "openWhatsAppWeb": "פתיחה ב־WhatsApp Web",
-  "callPhone": "התקשרות"
+  "callPhone": "התקשרות",
+  "prospectComment": "הערה",
+  "editProspectComment": "עריכת ההערה של {name}",
+  "prospectCommentSaveError": "לא ניתן לשמור. הטקסט נשמר בטיוטה. יש לרענן את הרשימה ולבדוק הרשאות לפני ניסיון נוסף.",
+  "sendWhatsAppMessage": "שליחת הודעת WhatsApp"
 }

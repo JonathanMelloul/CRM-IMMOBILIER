@@ -29,3 +29,11 @@ Les doublons déjà en base ou dans le fichier sont ignorés par l'import exista
 ## Validation
 
 `pnpm test`, `pnpm build` et `pnpm typecheck`. Les tests couvrent les années distinctes, dates inconnues, changements de fuseau, formats Excel, sélection par responsable et conservation des commentaires dans la charge utile d'import. La vérification navigateur avec Supabase simulé doit être distinguée d'un import dans la base réelle.
+
+## Statut et commentaire
+
+Si le statut enregistré est encore le défaut d’import Nouveau (ou vide), les listes, l’administration et la fiche affichent le statut source exact conservé dans les notes. Les autres statuts CRM restent prioritaires. Le formulaire de fiche propose le statut affiché ; une modification explicite, y compris Nouveau, est conservée. Aucun statut source absent n’est inventé.
+
+La colonne Commentaire permet de modifier, annuler, enregistrer ou vider le commentaire sans quitter la liste. Le texte courant est également proposé dans le formulaire de fiche. Les métadonnées et le commentaire d’origine sont conservés dans les notes. Une mise à jour en ligne vérifie que les notes n’ont pas changé depuis le chargement pour éviter d’écraser une modification concurrente ; en cas de refus, le brouillon reste visible. Les droits Supabase existants restent applicables.
+
+Les boutons 📞 et 💬 à côté du numéro ouvrent respectivement l’appel et WhatsApp Web. Le message reste à rédiger et à envoyer par l’utilisateur.

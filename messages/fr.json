@@ -373,5 +373,9 @@
   "sourceComment": "Commentaire du fichier",
   "prospectListTotal": "{count, plural, =0 {Total : 0 prospect} one {Total : # prospect} other {Total : # prospects}}",
   "openWhatsAppWeb": "Ouvrir dans WhatsApp Web",
-  "callPhone": "Appeler"
+  "callPhone": "Appeler",
+  "prospectComment": "Commentaire",
+  "editProspectComment": "Modifier le commentaire de {name}",
+  "prospectCommentSaveError": "Enregistrement impossible. Ton texte est conservé. Recharge la liste et vérifie tes droits avant de réessayer.",
+  "sendWhatsAppMessage": "Envoyer un message WhatsApp"
 }

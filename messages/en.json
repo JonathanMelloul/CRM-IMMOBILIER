@@ -373,5 +373,9 @@
   "sourceComment": "File comment",
   "prospectListTotal": "{count, plural, one {Total: # prospect} other {Total: # prospects}}",
   "openWhatsAppWeb": "Open in WhatsApp Web",
-  "callPhone": "Call"
+  "callPhone": "Call",
+  "prospectComment": "Comment",
+  "editProspectComment": "Edit comment for {name}",
+  "prospectCommentSaveError": "Could not save. Your draft is preserved. Reload the list and check your permissions before trying again.",
+  "sendWhatsAppMessage": "Send a WhatsApp message"
 }
