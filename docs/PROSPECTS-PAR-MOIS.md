@@ -37,3 +37,5 @@ Si le statut enregistré est encore le défaut d’import Nouveau (ou vide), les
 La colonne Commentaire permet de modifier, annuler, enregistrer ou vider le commentaire sans quitter la liste. Le texte courant est également proposé dans le formulaire de fiche. Les métadonnées et le commentaire d’origine sont conservés dans les notes. Une mise à jour en ligne vérifie que les notes n’ont pas changé depuis le chargement pour éviter d’écraser une modification concurrente ; en cas de refus, le brouillon reste visible. Les droits Supabase existants restent applicables.
 
 Les boutons 📞 et 💬 à côté du numéro ouvrent respectivement l’appel et WhatsApp Web. Le message reste à rédiger et à envoyer par l’utilisateur.
+
+Le statut peut également être modifié directement dans la liste avec ✏️ Modifier, puis Enregistrer ou Annuler. Les suggestions reprennent les statuts des dossiers accessibles ; la saisie libre reste possible. La mise à jour du statut et de sa priorité sur le statut source est atomique et vérifie l’ancien statut et les anciennes notes pour éviter une modification concurrente. Les commentaires et données d’origine sont conservés.

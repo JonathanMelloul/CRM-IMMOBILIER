@@ -377,5 +377,7 @@
   "prospectComment": "הערה",
   "editProspectComment": "עריכת ההערה של {name}",
   "prospectCommentSaveError": "לא ניתן לשמור. הטקסט נשמר בטיוטה. יש לרענן את הרשימה ולבדוק הרשאות לפני ניסיון נוסף.",
-  "sendWhatsAppMessage": "שליחת הודעת WhatsApp"
+  "sendWhatsAppMessage": "שליחת הודעת WhatsApp",
+  "editProspectStatus": "עריכת הסטטוס של {name}",
+  "prospectStatusSaveError": "הסטטוס לא נשמר. הטיוטה נשמרה. יש לרענן את הרשימה ולבדוק הרשאות לפני ניסיון נוסף."
 }
