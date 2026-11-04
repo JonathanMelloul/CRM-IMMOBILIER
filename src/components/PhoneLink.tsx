@@ -14,5 +14,5 @@ export default function PhoneLink({value,country,message}:{value:string|number|b
  const url=`https://web.whatsapp.com/send?phone=${whatsapp}`;
  const messageUrl=message?`${url}&text=${encodeURIComponent(message)}`:url;
  const messageLabel=t(message?'prepareWhatsAppMessage':'sendWhatsAppMessage');
- return <span className="phone-actions"><a className="phone-link" href={url} target="_blank" rel="noopener noreferrer" title={t('openWhatsAppWeb')} aria-label={`${t('openWhatsAppWeb')} : ${display}`}><bdi>{display}</bdi></a>{call}<a className="phone-action-icon phone-whatsapp" href={messageUrl} target="_blank" rel="noopener noreferrer" title={messageLabel} aria-label={`${messageLabel} : ${display}`}><span aria-hidden="true">💬</span></a></span>;
+ return <span className="phone-actions"><a className="phone-link" href={messageUrl} target="_blank" rel="noopener noreferrer" title={message?t('prepareWhatsAppMessage'):t('openWhatsAppWeb')} aria-label={`${message?messageLabel:t('openWhatsAppWeb')} : ${display}`}><bdi>{display}</bdi></a>{call}<a className="phone-action-icon phone-whatsapp" href={messageUrl} target="_blank" rel="noopener noreferrer" title={messageLabel} aria-label={`${messageLabel} : ${display}`}><span aria-hidden="true">💬</span></a></span>;
 }

@@ -42,7 +42,9 @@ test('message icon targets the right prospect and preserves accents and URL-sens
  assert.equal(messageLink.props.title,'prepareWhatsAppMessage');
  assert.equal(messageLink.props.target,'_blank');
  const numberLink=anchors.find(a=>a.props.className==='phone-link');
- assert.equal(new URL(numberLink.props.href).searchParams.has('text'),false);
+ assert.equal(new URL(numberLink.props.href).searchParams.get('text'),message);
+ assert.equal(numberLink.props.href,messageLink.props.href);
+ assert.equal(numberLink.props.title,'prepareWhatsAppMessage');
  assert.ok(anchors.some(a=>a.props.href==='tel:0612345678'));
 });
 
