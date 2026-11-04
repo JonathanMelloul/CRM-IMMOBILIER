@@ -7,12 +7,14 @@ import {prospectFollowUpMessage} from '../src/lib/prospect-follow-up.ts';
 import {whatsappNumber} from '../src/lib/phone-links.ts';
 
 const exports={};
+const windowCalls=[];let windowAvailable=true;
 const code=ts.transpileModule(fs.readFileSync('src/components/PhoneLink.tsx','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX}}).outputText;
 const jsx=(type,props)=>({type,props});
 vm.runInNewContext(code,{exports,require:name=>({
  'next-intl':{useTranslations:()=>key=>key},
  'react/jsx-runtime':{jsx,jsxs:jsx,Fragment:'fragment'},
- '@/lib/phone-links':{whatsappNumber}
+ '@/lib/phone-links':{whatsappNumber},
+ '@/lib/whatsapp-window':{openWhatsAppWindow:url=>{windowCalls.push(url);return windowAvailable;}}
 }[name])});
 function links(tree){
  if(!tree||typeof tree!=='object')return [];
@@ -55,4 +57,18 @@ test('other phone links keep an empty WhatsApp conversation and unknown destinat
  assert.equal(messageLink.props.title,'sendWhatsAppMessage');
  const unknown=links(exports.default({value:'0612345678',message:prospectFollowUpMessage('Sarah')}));
  assert.equal(unknown.some(a=>a.props.href.startsWith('https:')),false);
+});
+
+test('both WhatsApp links reuse the tab while modified clicks and blocked popups preserve browser behavior',()=>{
+ const message=prospectFollowUpMessage('Sarah Lévy');
+ const anchors=links(exports.default({value:'+33612345678',message}));
+ for(const anchor of anchors.filter(a=>a.props.href.startsWith('https:'))){
+  let prevented=false;
+  const event={button:0,currentTarget:{href:anchor.props.href},preventDefault(){prevented=true;}};
+  windowAvailable=true;const before=windowCalls.length;
+  anchor.props.onClick(event);assert.equal(prevented,true);assert.equal(windowCalls.at(-1),anchor.props.href);
+  prevented=false;anchor.props.onClick({...event,ctrlKey:true});assert.equal(prevented,false);assert.equal(windowCalls.length,before+1);
+  windowAvailable=false;anchor.props.onClick(event);assert.equal(prevented,false);
+ }
+ windowAvailable=true;
 });
