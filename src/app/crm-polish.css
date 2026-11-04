@@ -97,3 +97,7 @@
  .sidebar .navlink,.content-area .card:nth-child(n) {transition:none}
  .content-area .card:nth-child(n):hover {transform:none}
 }
+
+/* Keep non-relevant prospects identifiable on striped, hovered and selected rows. */
+.content-area .section-prospects .prospect-list tbody tr.prospect-not-relevant td {background:#fee2e2!important}
+.content-area .section-prospects .prospect-list tbody tr.prospect-not-relevant:hover td {background:#fecaca!important}
