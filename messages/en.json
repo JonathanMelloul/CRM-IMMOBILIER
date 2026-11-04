@@ -368,6 +368,7 @@
   "prospectComment": "Comment",
   "editProspectComment": "Edit comment for {name}",
   "prospectCommentSaveError": "Could not save. Your draft is preserved. Reload the list and check your permissions before trying again.",
+  "prepareWhatsAppMessage": "Prepare the follow-up message in WhatsApp — confirm sending there",
   "sendWhatsAppMessage": "Send a WhatsApp message",
   "editProspectStatus": "Edit status for {name}",
   "prospectStatusSaveError": "Status was not saved. Your draft is preserved. Reload the list and check your permissions before trying again.",

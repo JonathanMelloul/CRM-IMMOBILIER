@@ -368,6 +368,7 @@
   "prospectComment": "Commentaire",
   "editProspectComment": "Modifier le commentaire de {name}",
   "prospectCommentSaveError": "Enregistrement impossible. Ton texte est conservé. Recharge la liste et vérifie tes droits avant de réessayer.",
+  "prepareWhatsAppMessage": "Préparer le message de relance dans WhatsApp — envoi à confirmer",
   "sendWhatsAppMessage": "Envoyer un message WhatsApp",
   "editProspectStatus": "Modifier le statut de {name}",
   "prospectStatusSaveError": "Statut non enregistré. Ta saisie est conservée. Recharge la liste et vérifie tes droits avant de réessayer.",
