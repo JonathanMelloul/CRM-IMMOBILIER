@@ -7,14 +7,12 @@ import {prospectFollowUpMessage} from '../src/lib/prospect-follow-up.ts';
 import {whatsappNumber} from '../src/lib/phone-links.ts';
 
 const exports={};
-const windowCalls=[];let windowAvailable=true;
 const code=ts.transpileModule(fs.readFileSync('src/components/PhoneLink.tsx','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX}}).outputText;
 const jsx=(type,props)=>({type,props});
 vm.runInNewContext(code,{exports,require:name=>({
  'next-intl':{useTranslations:()=>key=>key},
  'react/jsx-runtime':{jsx,jsxs:jsx,Fragment:'fragment'},
- '@/lib/phone-links':{whatsappNumber},
- '@/lib/whatsapp-window':{openWhatsAppWindow:url=>{windowCalls.push(url);return windowAvailable;}}
+ '@/lib/phone-links':{whatsappNumber}
 }[name])});
 function links(tree){
  if(!tree||typeof tree!=='object')return [];
@@ -37,12 +35,13 @@ test('message icon targets the right prospect and preserves accents and URL-sens
  const anchors=links(exports.default({value:'06 12 34 56 78',country:'France',message}));
  const messageLink=anchors.find(a=>a.props.className.includes('phone-whatsapp'));
  const url=new URL(messageLink.props.href);
- assert.equal(url.origin,'https://web.whatsapp.com');
+ assert.equal(url.protocol,'whatsapp:');
+ assert.equal(url.hostname,'send');
  assert.equal(url.searchParams.get('phone'),'33612345678');
  assert.equal(url.searchParams.get('text'),message);
  assert.equal(url.hash,'');
  assert.equal(messageLink.props.title,'prepareWhatsAppMessage');
- assert.equal(messageLink.props.target,'_blank');
+ assert.equal(messageLink.props.target,undefined);
  const numberLink=anchors.find(a=>a.props.className==='phone-link');
  assert.equal(new URL(numberLink.props.href).searchParams.get('text'),message);
  assert.equal(numberLink.props.href,messageLink.props.href);
@@ -56,19 +55,12 @@ test('other phone links keep an empty WhatsApp conversation and unknown destinat
  assert.equal(new URL(messageLink.props.href).searchParams.has('text'),false);
  assert.equal(messageLink.props.title,'sendWhatsAppMessage');
  const unknown=links(exports.default({value:'0612345678',message:prospectFollowUpMessage('Sarah')}));
- assert.equal(unknown.some(a=>a.props.href.startsWith('https:')),false);
+ assert.equal(unknown.some(a=>a.props.href.startsWith('whatsapp:')),false);
 });
 
-test('both WhatsApp links reuse the tab while modified clicks and blocked popups preserve browser behavior',()=>{
- const message=prospectFollowUpMessage('Sarah Lévy');
- const anchors=links(exports.default({value:'+33612345678',message}));
- for(const anchor of anchors.filter(a=>a.props.href.startsWith('https:'))){
-  let prevented=false;
-  const event={button:0,currentTarget:{href:anchor.props.href},preventDefault(){prevented=true;}};
-  windowAvailable=true;const before=windowCalls.length;
-  anchor.props.onClick(event);assert.equal(prevented,true);assert.equal(windowCalls.at(-1),anchor.props.href);
-  prevented=false;anchor.props.onClick({...event,ctrlKey:true});assert.equal(prevented,false);assert.equal(windowCalls.length,before+1);
-  windowAvailable=false;anchor.props.onClick(event);assert.equal(prevented,false);
- }
- windowAvailable=true;
+test('both message entry points use the installed app without a new browser tab',()=>{
+ const anchors=links(exports.default({value:'+33612345678',message:prospectFollowUpMessage('Sarah')}));
+ const messages=anchors.filter(a=>a.props.href.startsWith('whatsapp:'));
+ assert.equal(messages.length,2);
+ for(const anchor of messages){assert.equal(anchor.props.target,undefined);assert.equal(anchor.props.onClick,undefined);}
 });

@@ -363,6 +363,7 @@
   "unknownReceptionMonth": "Date à vérifier",
   "sourceComment": "Commentaire du fichier",
   "prospectListTotal": "{count, plural, =0 {Total : 0 prospect} one {Total : # prospect} other {Total : # prospects}}",
+  "openWhatsAppApp": "Ouvrir l’application WhatsApp",
   "openWhatsAppWeb": "Ouvrir dans WhatsApp Web",
   "callPhone": "Appeler",
   "prospectComment": "Commentaire",

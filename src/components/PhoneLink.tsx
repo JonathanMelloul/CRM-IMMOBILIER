@@ -1,14 +1,6 @@
 'use client';
 import {useTranslations} from 'next-intl';
 import {whatsappNumber} from '@/lib/phone-links';
-import {openWhatsAppWindow} from '@/lib/whatsapp-window';
-import type {MouseEvent} from 'react';
-
-function openConversation(event:MouseEvent<HTMLAnchorElement>){
- if(event.defaultPrevented||event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
- if(openWhatsAppWindow(event.currentTarget.href))event.preventDefault();
-}
-
 export default function PhoneLink({value,country,message}:{value:string|number|boolean|null|undefined;country?:string;message?:string}){
  const t=useTranslations();
  const display=String(value??'').trim();
@@ -18,8 +10,8 @@ export default function PhoneLink({value,country,message}:{value:string|number|b
  const whatsapp=whatsappNumber(display,country);
  const call=<a className="phone-action-icon phone-call" href={`tel:${number}`} title={t('callPhone')} aria-label={`${t('callPhone')} : ${display}`}><span aria-hidden="true">📞</span></a>;
  if(!whatsapp)return <span className="phone-actions"><a className="phone-link" href={`tel:${number}`}><bdi>{display}</bdi></a>{call}</span>;
- const url=`https://web.whatsapp.com/send?phone=${whatsapp}`;
+ const url=`whatsapp://send?phone=${whatsapp}`;
  const messageUrl=message?`${url}&text=${encodeURIComponent(message)}`:url;
  const messageLabel=t(message?'prepareWhatsAppMessage':'sendWhatsAppMessage');
- return <span className="phone-actions"><a className="phone-link" href={messageUrl} onClick={openConversation} target="_blank" rel="noopener noreferrer" title={message?t('prepareWhatsAppMessage'):t('openWhatsAppWeb')} aria-label={`${message?messageLabel:t('openWhatsAppWeb')} : ${display}`}><bdi>{display}</bdi></a>{call}<a className="phone-action-icon phone-whatsapp" href={messageUrl} onClick={openConversation} target="_blank" rel="noopener noreferrer" title={messageLabel} aria-label={`${messageLabel} : ${display}`}><span aria-hidden="true">💬</span></a></span>;
+ return <span className="phone-actions"><a className="phone-link" href={messageUrl} title={message?t('prepareWhatsAppMessage'):t('openWhatsAppApp')} aria-label={`${message?messageLabel:t('openWhatsAppApp')} : ${display}`}><bdi>{display}</bdi></a>{call}<a className="phone-action-icon phone-whatsapp" href={messageUrl} title={messageLabel} aria-label={`${messageLabel} : ${display}`}><span aria-hidden="true">💬</span></a></span>;
 }
