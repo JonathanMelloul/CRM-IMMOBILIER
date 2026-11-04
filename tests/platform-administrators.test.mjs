@@ -17,8 +17,8 @@ const request=(token='token')=>({headers:new Headers(token?{Authorization:`Beare
 test('anonymous or invalid sessions cannot read administrator contacts',async()=>{
  for(const [options,token] of [[{},null],[{invalidToken:true},'token']]){const h=handler(options);assert.equal((await h.get(request(token))).status,401);assert.ok(h.calls.clients<=1);assert.equal(h.calls.queries.length,0);}
 });
-test('agency administrators and missing MFA cannot read cross-agency contacts',async()=>{
- for(const options of [{platform:false},{mfa:false},{contextError:true},{factors:[{factor_type:'totp',status:'verified'}]}]){const h=handler(options);assert.equal((await h.get(request())).status,403);assert.equal(h.calls.clients,1);assert.equal(h.calls.queries.length,0);}
+test('agency administrators and failed context cannot read cross-agency contacts',async()=>{
+ for(const options of [{platform:false},{contextError:true}]){const h=handler(options);assert.equal((await h.get(request())).status,403);assert.equal(h.calls.clients,1);assert.equal(h.calls.queries.length,0);}
 });
 test('platform administrator without membership receives only administrator contact fields',async()=>{
  const rows=[{id:'a',agency_id:'one',full_name:'Alice',email:'alice@example.invalid',active:true},{id:'b',agency_id:'two',full_name:'Bob',email:'bob@example.invalid',active:false}];
@@ -33,3 +33,5 @@ test('administrator contacts are paginated without dropping results at the API l
 test('missing server configuration or query errors do not pretend the agency has no administrators',async()=>{
  for(const options of [{noSecret:true},{queryError:true}]){const h=handler(options);const result=await h.get(request());assert.equal(result.status,503);assert.equal(result.body.administrators,undefined);}
 });
+
+test('platform administrator with an enrolled factor can read contacts using a password-only session',async()=>{const h=handler({mfa:false,factors:[{factor_type:'totp',status:'verified'}]});assert.equal((await h.get(request())).status,200);assert.equal(h.calls.queries.length,1);});

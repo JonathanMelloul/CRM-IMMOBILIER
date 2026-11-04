@@ -1,9 +1,3 @@
-import type {User} from '@supabase/supabase-js';
-/** Call only AFTER getUser(token) has verified this exact token. */
-export function hasRequiredMfa(user:User,verifiedToken:string):boolean{
- if(!user.factors?.some(f=>f.factor_type==='totp'&&f.status==='verified'))return true;
- try{return JSON.parse(Buffer.from(verifiedToken.split('.')[1],'base64url').toString('utf8')).aal==='aal2';}catch{return false;}
-}
 /** Bound bytes while reading, including chunked requests without Content-Length. */
 export async function boundedJson(request:Request,limit=48000):Promise<Record<string,any>>{
  if(!request.headers.get('content-type')?.toLowerCase().startsWith('application/json'))throw Error('content-type');

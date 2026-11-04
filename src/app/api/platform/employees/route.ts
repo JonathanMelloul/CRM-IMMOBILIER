@@ -1,6 +1,6 @@
 import {createClient} from '@supabase/supabase-js';
 import {NextRequest,NextResponse} from 'next/server';
-import {boundedJson,hasRequiredMfa} from '@/lib/request-security';
+import {boundedJson} from '@/lib/request-security';
 export const dynamic='force-dynamic';
 export async function POST(request:NextRequest){
  const url=process.env.NEXT_PUBLIC_SUPABASE_URL,key=process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,secret=process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -10,9 +10,8 @@ export async function POST(request:NextRequest){
  const caller=createClient(url,key,{global:{headers:{Authorization:`Bearer ${token}`}},auth:{persistSession:false,autoRefreshToken:false}});
  const {data:auth,error}=await caller.auth.getUser(token);
  if(error||!auth.user)return NextResponse.json({error:'unauthorized'},{status:401});
- if(!hasRequiredMfa(auth.user,token))return NextResponse.json({error:'forbidden'},{status:403});
  const context=await caller.rpc('crm_saas_context');
- if(context.error||context.data?.mfa_ok!==true||context.data?.platform_admin!==true)return NextResponse.json({error:'forbidden'},{status:403});
+ if(context.error||context.data?.platform_admin!==true)return NextResponse.json({error:'forbidden'},{status:403});
  if(!secret)return NextResponse.json({error:'adminConfiguration'},{status:503});
  let body;try{body=await boundedJson(request,4096);}catch{return NextResponse.json({error:'invalid'},{status:400});}
  const agencyId=typeof body.agencyId==='string'?body.agencyId:'',name=typeof body.name==='string'?body.name.trim():'',email=typeof body.email==='string'?body.email.trim().toLowerCase():'';

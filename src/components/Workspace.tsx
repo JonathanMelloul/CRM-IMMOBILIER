@@ -12,7 +12,6 @@ import {prospectStatus,prospectComment,withProspectDetails} from '@/lib/prospect
 import Assistant from './Assistant';
 import AgencyName from './AgencyName';
 import Platform from './Platform';
-import AccountSecurity,{MfaGate} from './AccountSecurity';
 import ApartmentFilters,{matchesApartmentFilters,type ApartmentFilterValues} from './ApartmentFilters';
 import ProjectGallery from './ProjectGallery';
 import ProjectDossier from './ProjectDossier';
@@ -42,15 +41,14 @@ export default function Workspace({path,initialProspectId}:{path:string[];initia
  if(!configured())return <section className="panel"><h1>{t('setup')}</h1><p>{t('setupHelp')}</p></section>;
  if(!ready)return <p role="status">{t('loading')}</p>;
  if(!user)return <Auth recovery={recovery} onRecovered={()=>{setRecovery(false);router.replace(`/${locale}`);}}/>;
- if(recovery)return <MfaGate userId={user.id}><Auth recovery onRecovered={()=>{setRecovery(false);router.replace(`/${locale}`);}}/></MfaGate>;
+ if(recovery)return <Auth recovery onRecovered={()=>{setRecovery(false);router.replace(`/${locale}`);}}/>;
  const platformPage=path.length===1&&path[0]==='platform';
- const securityPage=path.length===1&&path[0]==='security';
  const messagingPage=path.length===1&&path[0]==='messaging';
  const adminPage=path.length===1&&path[0]==='administration';
  const paymentPage=path.length===1&&path[0]==='payment-terms';
  const entity=path[0] && isEntity(path[0])?path[0]:null;
- if(path.length>3 || (path.length && !entity && !platformPage && !paymentPage && !adminPage && !messagingPage && !securityPage) || (path.length===3 && path[2]!=='edit'))return <section className="panel"><h1>{t('notFound')}</h1><Link href={`/${locale}`}>{t('dashboard')}</Link></section>;
- return <MfaGate userId={user.id}><Platform key={`platform-${user.id}`} userId={user.id} page={platformPage}/><AgencyName key={user.id} userId={user.id}/><Assistant key={user.id}/>{accountTarget&&createPortal(<><Link className="button" href={`/${locale}/security`}>{t('accountSecurity')}</Link><span className="profile-identity"><span className="profile-avatar" aria-hidden="true">{user.email?.charAt(0).toUpperCase()}</span>{user.email}</span><button onClick={async()=>{setIsAdmin(false);const {error}=await supabase().auth.signOut();if(error)setError(t('authError'));}}><Icon name="logout"/>{t('signOut')}</button></>,accountTarget)}<WorkNotifications key={user.id} userId={user.id}/><div className="profile-strip"><MessageLink key={user.id} userId={user.id}/>{isAdmin&&<Link className="button" href={`/${locale}/administration`}>{t('administration')}</Link>}</div>{error && <p role="alert" className="error">{error}</p>}{platformPage?null:securityPage?<AccountSecurity/>:messagingPage?<Messaging key={user.id} userId={user.id}/>:adminPage?(isAdmin?<Administration userId={user.id}/>:<section className="panel"><h1>{t('adminOnly')}</h1></section>):paymentPage?<PaymentTerms userId={user.id}/>:entity?<Records key={`${path.join('/')}?prospect=${initialProspectId??''}`} entity={entity} id={path[1]} edit={path[2]==='edit'} user={user} canManage={isAdmin} initialProspectId={initialProspectId}/>:<Dashboard user={user}/>}</MfaGate>;
+ if(path.length>3 || (path.length && !entity && !platformPage && !paymentPage && !adminPage && !messagingPage) || (path.length===3 && path[2]!=='edit'))return <section className="panel"><h1>{t('notFound')}</h1><Link href={`/${locale}`}>{t('dashboard')}</Link></section>;
+ return <><Platform key={`platform-${user.id}`} userId={user.id} page={platformPage}/><AgencyName key={user.id} userId={user.id}/><Assistant key={user.id}/>{accountTarget&&createPortal(<><span className="profile-identity"><span className="profile-avatar" aria-hidden="true">{user.email?.charAt(0).toUpperCase()}</span>{user.email}</span><button onClick={async()=>{setIsAdmin(false);const {error}=await supabase().auth.signOut();if(error)setError(t('authError'));}}><Icon name="logout"/>{t('signOut')}</button></>,accountTarget)}<WorkNotifications key={user.id} userId={user.id}/><div className="profile-strip"><MessageLink key={user.id} userId={user.id}/>{isAdmin&&<Link className="button" href={`/${locale}/administration`}>{t('administration')}</Link>}</div>{error && <p role="alert" className="error">{error}</p>}{platformPage?null:messagingPage?<Messaging key={user.id} userId={user.id}/>:adminPage?(isAdmin?<Administration userId={user.id}/>:<section className="panel"><h1>{t('adminOnly')}</h1></section>):paymentPage?<PaymentTerms userId={user.id}/>:entity?<Records key={`${path.join('/')}?prospect=${initialProspectId??''}`} entity={entity} id={path[1]} edit={path[2]==='edit'} user={user} canManage={isAdmin} initialProspectId={initialProspectId}/>:<Dashboard user={user}/>}</>;
 }
 
 function Auth({recovery,onRecovered}:{recovery:boolean;onRecovered:()=>void}) {

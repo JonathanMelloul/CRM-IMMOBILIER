@@ -21,8 +21,8 @@ function request(body={agencyId,name:' New administrator ',email:'NEW@example.in
 test('anonymous and invalid sessions never create a privileged client',async()=>{
  for(const [options,token] of [[{},null],[{invalidToken:true},'token']]){const h=handler(options);assert.equal((await h.post(request(undefined,token))).status,401);assert.ok(h.calls.clients<=1);assert.equal(h.calls.invites.length,0);}
 });
-test('ordinary admins, incomplete MFA and failed context cannot invite',async()=>{
- for(const options of [{platform:false},{mfa:false},{contextError:true},{factors:[{factor_type:'totp',status:'verified'}]}]){const h=handler(options);assert.equal((await h.post(request())).status,403);assert.equal(h.calls.clients,1);assert.equal(h.calls.invites.length,0);}
+test('ordinary admins and failed context cannot invite',async()=>{
+ for(const options of [{platform:false},{contextError:true}]){const h=handler(options);assert.equal((await h.post(request())).status,403);assert.equal(h.calls.clients,1);assert.equal(h.calls.invites.length,0);}
 });
 test('target agency must exist and have active access',async()=>{
  for(const options of [{agencyError:true},{suspended:true},{expired:true},{subscription:'canceled'}]){const h=handler(options);assert.equal((await h.post(request())).status,400);assert.equal(h.calls.clients,1);assert.equal(h.calls.invites.length,0);}
@@ -48,3 +48,5 @@ test('email failure does not register membership; registration failure reports p
  const email=handler({emailError:true});assert.equal((await email.post(request())).body.error,'inviteFailed');assert.equal(email.calls.registrations.length,0);
  const registration=handler({registrationError:true});const result=await registration.post(request());assert.equal(result.status,500);assert.equal(result.body.error,'provisionFailed');assert.equal(registration.calls.invites.length,1);
 });
+
+test('platform administrator with an enrolled factor can invite using a password-only session',async()=>{const h=handler({mfa:false,factors:[{factor_type:'totp',status:'verified'}]});assert.equal((await h.post(request())).status,201);assert.equal(h.calls.invites.length,1);});

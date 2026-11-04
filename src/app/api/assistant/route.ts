@@ -1,6 +1,6 @@
 import {createClient} from '@supabase/supabase-js';
 import {NextRequest,NextResponse} from 'next/server';
-import {boundedJson,hasRequiredMfa} from '@/lib/request-security';
+import {boundedJson} from '@/lib/request-security';
 import {entities,fields,table,legacyMode,type Entity} from '@/lib/model';
 export const dynamic='force-dynamic';
 export const maxDuration=60;
@@ -10,7 +10,6 @@ export async function POST(request:NextRequest){
  if(!url||!key||!token)return NextResponse.json({error:'unauthorized'},{status:401});
  const db=createClient(url,key,{global:{headers:{Authorization:'Bearer '+token}},auth:{persistSession:false,autoRefreshToken:false}});
  const auth=await db.auth.getUser(token);if(auth.error||!auth.data.user)return NextResponse.json({error:'unauthorized'},{status:401});
- if(!hasRequiredMfa(auth.data.user,token))return NextResponse.json({error:'forbidden'},{status:403});
  const member=await db.from('crm_members').select('active').eq('id',auth.data.user.id).single();if(!member.data?.active)return NextResponse.json({error:'forbidden'},{status:403});
  if(!process.env.AI_API_KEY)return NextResponse.json({error:'aiSetup'},{status:503});
  let body;try{body=await boundedJson(request);}catch{return NextResponse.json({error:'aiError'},{status:400});}

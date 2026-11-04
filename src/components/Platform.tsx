@@ -34,7 +34,7 @@ export default function Platform({userId,page}:{userId:string;page:boolean}) {
     const context=await supabase().rpc('crm_saas_context');
     if(!live)return;
     if(context.error)throw Error();
-    const authorized=context.data?.mfa_ok===true&&context.data?.platform_admin===true;
+    const authorized=context.data?.platform_admin===true;
     setAllowed(authorized);
     if(authorized&&page){
      const result=await supabase().from('agencies').select('id,name,slug,status,subscription_status,access_until').order('name');

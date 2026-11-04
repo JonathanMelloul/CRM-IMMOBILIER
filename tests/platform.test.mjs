@@ -27,8 +27,8 @@ test('ordinary members cannot list agencies or see a creation form',async()=>{
  assert.equal(app.calls.some(call=>call.table),false);
  assert.equal(find(app.render(),node=>node.type==='form'),null);
 });
-test('platform access fails closed when MFA or context is unavailable',async()=>{
- for(const [context,options] of [[{platform_admin:true,mfa_ok:false},{}],[null,{contextError:true}]]){
+test('platform access fails closed when context is unavailable',async()=>{
+ for(const [context,options] of [[null,{}],[null,{contextError:true}]]){
   const app=mount(context,options);await app.settle();
   assert.equal(app.calls.some(call=>call.table),false);
   assert.equal(find(app.render(),node=>node.type==='form'),null);
@@ -56,3 +56,5 @@ test('failed contact lookup stays distinct from an agency without an administrat
  const app=mount({mfa_ok:true,platform_admin:true},{administratorsError:true});await app.settle();
  const contacts=find(app.render(),node=>node.type==='agency-administrators');assert.equal(contacts.props.error,true);assert.equal(contacts.props.members,null);
 });
+
+test('platform administrator does not need a second-factor assertion to access the creation form',async()=>{const app=mount({platform_admin:true,mfa_ok:false,active:false});await app.settle();assert.ok(find(app.render(),node=>node.type==='form'));});

@@ -1,6 +1,5 @@
 import {createClient} from '@supabase/supabase-js';
 import {NextRequest,NextResponse} from 'next/server';
-import {hasRequiredMfa} from '@/lib/request-security';
 
 export const dynamic='force-dynamic';
 export async function GET(request:NextRequest){
@@ -12,9 +11,8 @@ export async function GET(request:NextRequest){
   const caller=createClient(url,key,{global:{headers:{Authorization:`Bearer ${token}`}},auth:{persistSession:false,autoRefreshToken:false}});
   const {data,error}=await caller.auth.getUser(token);
   if(error||!data.user)return NextResponse.json({error:'unauthorized'},{status:401});
-  if(!hasRequiredMfa(data.user,token))return NextResponse.json({error:'forbidden'},{status:403});
   const context=await caller.rpc('crm_saas_context');
-  if(context.error||context.data?.mfa_ok!==true||context.data?.platform_admin!==true)return NextResponse.json({error:'forbidden'},{status:403});
+  if(context.error||context.data?.platform_admin!==true)return NextResponse.json({error:'forbidden'},{status:403});
   const secret=process.env.SUPABASE_SERVICE_ROLE_KEY;
   if(!secret)return NextResponse.json({error:'adminConfiguration'},{status:503});
   const service=createClient(url,secret,{auth:{persistSession:false,autoRefreshToken:false}});
