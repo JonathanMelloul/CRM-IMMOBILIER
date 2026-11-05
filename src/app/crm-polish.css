@@ -101,3 +101,33 @@
 /* Keep non-relevant prospects identifiable on striped, hovered and selected rows. */
 .content-area .section-prospects .prospect-list tbody tr.prospect-not-relevant td {background:#fee2e2!important}
 .content-area .section-prospects .prospect-list tbody tr.prospect-not-relevant:hover td {background:#fecaca!important}
+
+/* Fit every legacy prospect column in the desktop workspace. */
+@media(min-width:768px) {
+ .content-area .section-prospects .prospect-list-legacy {table-layout:fixed;width:100%;min-width:0;border-spacing:0 6px;padding:0}
+ .content-area .section-prospects .prospect-list-legacy th,
+ .content-area .section-prospects .prospect-list-legacy td {min-width:0;max-width:none;padding:10px 6px;white-space:normal;overflow-wrap:anywhere;box-sizing:border-box}
+ .content-area .section-prospects .prospect-list-legacy .selection-cell {width:3%;max-width:none;padding-inline:4px!important}
+ .prospect-list-legacy th:nth-child(2) {width:17%}
+ .prospect-list-legacy th:nth-child(3) {width:12%}
+ .prospect-list-legacy th:nth-child(4) {width:7%}
+ .prospect-list-legacy th:nth-child(5) {width:5%}
+ .prospect-list-legacy th:nth-child(6) {width:6%}
+ .prospect-list-legacy th:nth-child(7) {width:13%}
+ .prospect-list-legacy th:nth-child(8) {width:18%}
+ .prospect-list-legacy th:nth-child(9) {width:11%}
+ .prospect-list-legacy th:nth-child(10) {width:8%}
+ .section-prospects .prospect-list-legacy .person-cell {min-width:0;gap:7px}
+ .section-prospects .prospect-list-legacy .person-copy {min-width:0}
+ .section-prospects .prospect-list-legacy .person-copy small {max-width:none;overflow:visible;white-space:normal}
+ .section-prospects .prospect-list-legacy .person-avatar {width:28px;height:28px;font-size:10px}
+ .section-prospects .prospect-list-legacy .phone-actions {max-width:100%;gap:6px}
+ .section-prospects .prospect-list-legacy .phone-link {max-width:100%;overflow-wrap:anywhere}
+ .section-prospects .prospect-list-legacy .prospect-status-cell,
+ .section-prospects .prospect-list-legacy .prospect-status-form,
+ .section-prospects .prospect-list-legacy .prospect-comment-form textarea {min-width:0;max-width:100%;width:100%}
+ .section-prospects .prospect-list-legacy .prospect-comment-text {max-height:none;overflow:visible}
+ .section-prospects .prospect-list-legacy .status-pill {max-width:100%;white-space:normal;overflow-wrap:anywhere}
+ .section-prospects .prospect-list-legacy .column-sort {max-width:100%;white-space:normal;text-align:start}
+ .section-prospects .prospect-list-legacy .record-action {max-width:100%;padding:6px;gap:3px;white-space:normal}
+}
