@@ -131,3 +131,7 @@
  .section-prospects .prospect-list-legacy .column-sort {max-width:100%;white-space:normal;text-align:start}
  .section-prospects .prospect-list-legacy .record-action {max-width:100%;padding:6px;gap:3px;white-space:normal}
 }
+
+/* Keep the phone number above its two actions, including narrow columns. */
+.phone-actions {flex-direction:column;align-items:flex-start;gap:6px}
+.phone-action-buttons {display:inline-flex;align-items:center;flex-wrap:nowrap;gap:6px;flex-shrink:0}
